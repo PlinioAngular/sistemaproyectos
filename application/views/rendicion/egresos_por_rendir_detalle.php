@@ -10,16 +10,22 @@
               <h6 class="m-0 font-weight-bold text-primary">DataTables area</h6>
             </div>
             <div class="row">
-              <div class="col col-sm-10"></div>
-                
+              <div class="col col-sm-10"></div>                
                 </div>
-            <div class="card-body">
-              
+            <form action="<?php echo base_url('rendicion/suma');?>"  id="add_rendicion" name="add_rendicion" accept-charset="utf-8" enctype="multipart/form-data" method="post">  
+            <div class="row">
+              <div class="col-sm-2">
+							  <div class="form-group">
+							  <label for="">&nbsp;</label>
+                 <button id="btn-agregar" type="submit" class="btn btn-success btn-flat btn-block"><span class="fa fa-plus"></span> Sumar</button></div>
+						  </div>
+            </div>
+            <div class="card-body">              
                 <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      
+                      <th>Suma</th>
                       <th>Responsable</th>                        
                       <th>Total</th> 
                       <th>Rendir</th>                   
@@ -27,7 +33,7 @@
                   </thead>
                   <tfoot>
                     <tr>
-                      
+                      <th>Suma</th>
                       <th>Responsable</th>                        
                       <th>Total</th> 
                       <th>Rendir</th>    
@@ -36,6 +42,7 @@
                   <tbody>
                   <?php foreach($datos as $dato) { ?>
                     <tr>
+                      <td><input name="select[]" class="form-control" type="checkbox" onclick="$this.id_detalle_caja.value=20"  ><input type="hidden" name="id_detalle_caja[]" value="<?php echo $dato->id_detalle_caja; ?>"></td>
                       <td><?php echo $dato->apellido_paterno.' '.$dato->apellido_paterno.' '.$dato->nombres; ?></td>
                       <td><?php echo $dato->total; ?></td>
                       <td>
@@ -48,7 +55,8 @@
                   </tbody>
                 </table>
               </div>
-        </div>
+          </div>
+          </form>
     </div>
 </div>
 </div>

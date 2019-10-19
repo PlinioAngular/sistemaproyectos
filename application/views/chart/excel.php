@@ -99,7 +99,7 @@
    //Agregar fila nueva. 
    
       var fila_nueva = $('<tr id="filadatos" class="filadatos table">'+
-	  '<td> <input name="fechas[]" type="date" value="10/10/2019"></td>'+
+	  '<td> <input name="fechas[]" type="date" value="'+fecha+'"></td>'+
 	  '<td> <input name="periodos[]" value="" placeholder="Periodo"></td>'+
 	  '<td> <input name="ruc[]" value="'+ruc+'" placeholder="RUC"></td>'+
 	  '<td> <select name="comprobantes[]"><option>'+comprobante+'</option>'+

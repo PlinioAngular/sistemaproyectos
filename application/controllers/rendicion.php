@@ -75,11 +75,18 @@ class Rendicion extends CI_Controller {
 		$this->load->view('layout/footer');
 	}
 
+	public function suma()
+	{
+		$check=$this->input->post('select');
+		$id_detalle_caja=$this->input->post('id_detalle_caja');
+		echo json_encode($id_detalle_caja);
+	}
+
 	public function web_detalle($id)
 	{
-		$datos["datos"]=$this->rendicion_model->rendiciones_web();
+		$datos["datos"]=$this->rendicion_model->rendiciones_web_detalle($id);
 		
-		$datos['notificaciones']=$this->rendicion_model->rendiciones_web_detalle($id);
+		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
 		$this->load->view('layout/header',$datos);
 		$this->load->view('rendicion/web',$datos);
 		$this->load->view('layout/footer');
