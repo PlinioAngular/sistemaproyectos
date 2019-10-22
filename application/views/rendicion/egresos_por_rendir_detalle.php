@@ -42,8 +42,8 @@
                   <tbody>
                   <?php foreach($datos as $dato) { ?>
                     <tr>
-                      <td><input name="select[]" class="form-control" type="checkbox" onclick="$this.id_detalle_caja.value=20"  ><input type="hidden" name="id_detalle_caja[]" value="<?php echo $dato->id_detalle_caja; ?>"></td>
-                      <td><?php echo $dato->apellido_paterno.' '.$dato->apellido_paterno.' '.$dato->nombres; ?></td>
+                      <td><input name="select[]" class="form-control" type="checkbox" value="<?php echo $dato->id_detalle_caja.'_'.$dato->total; ?>"  ><input type="hidden" name="id_persona" value="<?php echo $dato->id_persona; ?>"></td>
+                      <td><?php echo $dato->apellido_paterno.' '.$dato->apellido_materno.' '.$dato->nombres; ?></td>
                       <td><?php echo $dato->total; ?></td>
                       <td>
 			                    <a href="<?php echo base_url('rendicion/registrar/').$dato->id_detalle_caja; ?>" class="btn btn-info btn-circle btn-sm">
@@ -62,3 +62,9 @@
 </div>
 </div>
 </div>
+<script>
+
+function detalle(){
+  
+}
+</script>

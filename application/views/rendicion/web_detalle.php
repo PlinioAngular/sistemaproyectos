@@ -44,7 +44,7 @@
                       <td><?php echo $dato->rendido; ?></td>
                       <td><?php echo $dato->saldo; ?></td>
                       <td>
-                        <a href="<?php echo base_url('rendicion/editar/').$dato->id_rendicion; ?>" class="btn btn-info btn-circle btn-sm">
+                        <a href="<?php echo base_url('rendicion/editar/').$dato->id_detalle_caja; ?>" class="btn btn-info btn-circle btn-sm">
                           <i class="fas fa-edit"></i>
                       
                           </a>

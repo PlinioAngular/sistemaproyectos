@@ -44,12 +44,20 @@ class Rendicion_model extends CI_Model {
  {
     $this->db->select('dc.id_detalle_caja,r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto as total');
     $this->db->where('ca.egreso !=',0);
+    $this->db->where('dc.estado',0);
     $this->db->where('ca.id_responsable',$id);
     $this->db->from("tbl_detalle_caja as dc");
     $this->db->join("tbl_caja as ca ","dc.id_caja=ca.id_caja");
     $this->db->join("tbl_persona as r ","ca.id_responsable=r.id_persona");
     $query=$this->db->get();      
  	return $query->result();
+ }
+ public function mostrar_detalle_id_suma($id)
+ {
+    $this->db->select('r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres');
+    $this->db->where('r.id_persona',$id);
+    $this->db->from("tbl_persona as r");
+    return $this->db->get()->row();
  }
 
  public function mostrar_detalle_id($id)
@@ -147,6 +155,77 @@ class Rendicion_model extends CI_Model {
    return $insert_id;
 }
 else { return false;}
+}
+
+function rendicion_add_suma($id_detalle,$inicio,$fin){
+   $fecha=$this->input->post('fechas');
+   $periodo=$this->input->post('periodos');
+   $ruc=$this->input->post('ruc');
+   $comprobante=$this->input->post('comprobantes');
+   $serie=$this->input->post('serie');
+   $numero=$this->input->post('numero');
+   $proyecto=$this->input->post('proyectos');
+   $clasificacion=$this->input->post('clasificaciones');
+   $tipo_actividad=$this->input->post('tipo_actividad');
+   $cantidad=$this->input->post('cantidad');
+   $precio=$this->input->post('precio');
+   $descripcion=$this->input->post('detalles');
+  $detalle = array(
+     'id_autoriza' => $this->input->post('id_autoriza'),
+     'id_registra' =>$this->session->userdata('id'),
+     'gasto' => $this->input->post('total'),
+     'bloque' => 1,
+     'id_detalle_caja' => $id_detalle,
+     'fecha_registro' => date("Y/m/d")
+  );
+
+  if(!$this->db->table_exists('tbl_rendicion')){ //VALIDA SI EXISTE LA TABLA
+     return false;
+  }if(count($precio)>0){
+   $insert_fun = $this->db->insert('tbl_rendicion',$detalle);
+   $insert_id = $this->db->insert_id();
+   if($insert_id){
+      $this->cambio_estado($id_detalle);
+      $insert_id1=$this->add_detalle_rendicion_suma($inicio,$fin,$insert_id,$fecha,$periodo,$proyecto,$ruc,$comprobante,$serie,$numero,$clasificacion,$tipo_actividad,$cantidad,$precio,$descripcion);
+      
+   }
+   return $insert_id;
+}
+else { return false;}
+
+}
+
+function add_detalle_rendicion_suma($inicio,$fin,$id_rendicion,$fecha,$periodo,$proyecto,$ruc,$comprobante,$serie,$numero,$clasificacion,$tipo_actividad,$cantidad,$precio,$descripcion){
+   $insert_id=0;
+   for($i=$inicio;$i<=$fin;$i++){
+   $data = array(
+      'id_rendicion' => $id_rendicion,
+      'fecha' => $fecha[$i],
+      'periodo' => $periodo[$i],
+      'id_proyecto' => $proyecto[$i],
+      'id_cliente' => 1,
+      'id_gerencia' => 1,
+      'id_area' => 1,
+      'id_sub_area' => 1,
+      'id_tipo_actividad' => $tipo_actividad[$i],
+      'ruc' => $ruc[$i],
+      'id_comprobante' => $comprobante[$i],
+      'serie' => $serie[$i],
+      'numero_comprobante' => $numero[$i],
+      'descripcion' => $descripcion[$i],
+      'cantidad' => $cantidad[$i],
+      'precio' => $precio[$i],
+      'id_clasificacion' => $clasificacion[$i]
+   );
+
+   if(!$this->db->table_exists('tbl_detalle_rendicion')){ //VALIDA SI EXISTE LA TABLA
+      return false;
+   }
+   
+   $insert_fun = $this->db->insert('tbl_detalle_rendicion',$data);
+   $insert_id = $this->db->insert_id(); 
+   }
+   return $insert_id;
 }
 
 function add_detalle_rendicion($id_rendicion,$fecha,$periodo,$proyecto,$ruc,$comprobante,$serie,$numero,$clasificacion,$tipo_actividad,$cantidad,$precio,$descripcion){
@@ -300,7 +379,7 @@ function rendicion_edit(){
    }
    function rendiciones_web_detalle($id){
       $this->db->select('r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto as egreso, ren.gasto as rendido, 
-    (dc.monto-ren.gasto) as saldo,ren.fecha_registro,dc.id_detalle_caja');
+    (dc.monto-ren.gasto) as saldo,ren.fecha_registro,dc.id_detalle_caja,ren.id_rendicion');
     $this->db->where('dc.estado',2);
     $this->db->where('r.id_persona',$id);
     $this->db->from("tbl_detalle_caja as dc");

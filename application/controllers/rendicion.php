@@ -77,9 +77,34 @@ class Rendicion extends CI_Controller {
 
 	public function suma()
 	{
-		$check=$this->input->post('select');
-		$id_detalle_caja=$this->input->post('id_detalle_caja');
-		echo json_encode($id_detalle_caja);
+		$detalles="";
+		$suma=0;
+		$id=$this->input->post('id_persona');
+		$dataa=$this->input->post('select');
+		$iparr = explode ("_", $dataa[1]); 
+		for($i=0;$i<count($dataa);$i++){
+			$iparr = explode ("_", $dataa[$i]); 
+			$suma+=$iparr[1];
+			$detalles.=$iparr[0]."_";
+		}
+		$data['clientes'] = $this->principal_model->mostrar_cliente();
+		$data['clasificaciones'] = $this->principal_model->mostrar_clasificacion();
+		$data['gerencias'] = $this->principal_model->mostrar_gerencia();
+		$data['areas'] = $this->principal_model->mostrar_area();
+		$data['sub_areas'] = $this->principal_model->mostrar_sub_area();
+		$data['tipos_actividad'] = $this->principal_model->mostrar_tipo_actividad();
+		$data['empresas']=	$this->principal_model->mostrar_empresa();
+		$data['bancos']=	$this->principal_model->mostrar_banco();
+		$data['comprobantes']=	$this->principal_model->mostrar_comprobante();
+		$data['personas']=	$this->persona_model->mostrar();
+		$data['proyectos']=	$this->principal_model->mostrar();
+		$data["datos"]=$this->rendicion_model->mostrar_detalle_id_suma($id);
+		$data['notificaciones']=$this->rendicion_model->rendiciones_web();
+		$data['suma']=$suma;
+		$data['seleccionados']=$detalles;
+		$this->load->view('layout/header',$data);
+		$this->load->view('rendicion/rendicion_suma',$data);
+		$this->load->view('layout/footer');
 	}
 
 	public function web_detalle($id)
@@ -88,7 +113,7 @@ class Rendicion extends CI_Controller {
 		
 		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
 		$this->load->view('layout/header',$datos);
-		$this->load->view('rendicion/web',$datos);
+		$this->load->view('rendicion/web_detalle',$datos);
 		$this->load->view('layout/footer');
 	}
 
@@ -96,7 +121,7 @@ class Rendicion extends CI_Controller {
 	{
 		$datos["datos"]=$this->rendicion_model->mostrar_egresos_rendidos_listado($id);
 		
-		$notificacion['notificaciones']=$this->rendicion_model->rendiciones_web();
+		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
 		$this->load->view('layout/header',$datos);
 		$this->load->view('rendicion/egresos_rendidos_detalle',$datos);
 		$this->load->view('layout/footer');
@@ -116,9 +141,8 @@ class Rendicion extends CI_Controller {
 		$data['personas']=	$this->persona_model->mostrar();
 		$data['proyectos']=	$this->principal_model->mostrar();
 		$data["datos"]=$this->rendicion_model->mostrar_detalle_id($id);
-		$notificacion['notificaciones']=$this->rendicion_model->rendiciones_web();
-		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
-		$this->load->view('layout/header',$notificacion);
+		$data['notificaciones']=$this->rendicion_model->rendiciones_web();
+		$this->load->view('layout/header',$data);
 		$this->load->view('rendicion/registrar',$data);
 		$this->load->view('layout/footer');
 	}
@@ -138,10 +162,39 @@ class Rendicion extends CI_Controller {
 		//$data["rendicion"]=$this->rendicion_model->mostrar_por_id($id_rendicion);
 		$data["detalles_rendicion"]=$this->rendicion_model->mostrar_detalle_por_id($id_rendicion);
 		
-		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
-		$this->load->view('layout/header',$notificacion);
+		$data['notificaciones']=$this->rendicion_model->rendiciones_web();
+		$this->load->view('layout/header',$data);
 		$this->load->view('rendicion/editar',$data);
 		$this->load->view('layout/footer');
+	}
+
+	function rendicion_suma(){
+		$this->form_validation->set_rules('id_autoriza','id_autoriza', 'required');
+		
+		if($this->form_validation->run() == FALSE)
+		{
+			echo 'Uno o varios campos son obligatorios.';
+			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
+		}
+		else{
+			$detalles=$this->input->post('id_detalle_caja');
+			$filas=$this->input->post('precio');			
+			$detalle=explode ("_", $detalles); 
+			$datos=round((count($filas))/(count($detalle)-1));
+			for($i=0;$i<count($detalle) - 1 ;$i++){
+				$inicio=$i*$datos;
+				$fin=(($i+1)*$datos)-1;
+				if($qid = $this->rendicion_model->rendicion_add_suma($detalle[$i],$inicio,$fin))
+			{
+				echo 'si_'.$qid;
+			}
+			else
+			{
+				echo 'Error en el registro. Comunicate con el administrador.';
+			}	
+			}
+		
+		}
 	}
 	
 	function rendicion_add(){

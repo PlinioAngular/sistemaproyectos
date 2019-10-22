@@ -269,7 +269,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php } ?>
                 
                 
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                <a class="dropdown-item text-center small text-gray-500" href="<?php echo base_url('rendicion/web'); ?>">Mostrar Todo</a>
               </div>
             </li>
             <?php } ?>
