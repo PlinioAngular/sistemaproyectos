@@ -26,7 +26,7 @@
                       <th>Gerencia</th>
                       <th>Área</th>
                       <th>Sub Área</th>
-                      <th>Tipo de Actividad</th>   
+                      <th>Empresa</th>   
                       <th>Acciones</th>                    
                     </tr>
                   </thead>
@@ -38,29 +38,13 @@
                       <th>Gerencia</th>
                       <th>Área</th>
                       <th>Sub Área</th>
-                      <th>Tipo de Actividad</th>   
+                      <th>Empresa</th>   
                       <th>Acciones</th>   
                       
                     </tr>
                   </tfoot>
                   <tbody>
-                  <?php foreach($datos as $dato) { ?>
-                    <tr>
-                      <td><?php echo $dato->nombre_proyecto; ?></td>
-                      <td><?php echo $dato->codigo_proyecto; ?></td>
-                      <td><?php echo $dato->cliente; ?></td>
-                      <td><?php echo $dato->gerencia; ?></td>
-                      <td><?php echo $dato->area; ?></td>
-                      <td><?php echo $dato->sub_area; ?></td>
-                      <td><?php echo $dato->tipo_actividad; ?></td>
-                      <td><button aria-expanded="false" aria-haspopup="true" class="btn btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Opción</button>
-			<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
-			<a class="dropdown-item" href="<?php echo base_url('welcome/edit/').$dato->id_proyecto; ?>" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
-			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="#">Eliminar</a>
-			</div></td>
-                    </tr>    
-                  <?php } ?>                
+                                
                   </tbody>
                 </table>
               </div>
@@ -70,3 +54,29 @@
 </div>
 </div>
 </div>
+<script>
+$(document).ready(function () {
+ $('#dataTable').DataTable({
+         "ajax":{
+           "type":"post",
+           "url":"<?php echo base_url('welcome/ajax'); ?> "
+           },
+         "language": {
+             "lengthMenu": "Mostrar _MENU_ registros por pagina",
+             "zeroRecords": "No se encontraron resultados en su busqueda",
+             "searchPlaceholder": "Buscar registros",
+             "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+             "infoEmpty": "No existen registros",
+             "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+             "search": "Buscar:",
+             "paginate": {
+                 "first": "Primero",
+                 "last": "Último",
+                 "next": "Siguiente",
+                 "previous": "Anterior"
+             },
+         }
+     });
+     
+ });
+ </script>

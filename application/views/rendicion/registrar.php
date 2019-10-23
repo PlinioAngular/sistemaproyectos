@@ -34,9 +34,6 @@
 
         reader.readAsBinaryString(file);
       };
-      
-      
-      
   };
 
   function handleFileSelect(evt) {
@@ -275,7 +272,7 @@ $('#btn-agregar').on('click', function() {
 		'<td> <select name="clasificaciones[]"><option>Seleccione una clasificación</option>'+
 		'<?php foreach($clasificaciones as $clasificacion){ ?><option value="<?php echo $clasificacion->id_clasificacion; ?>"><?php echo $clasificacion->clasificacion; ?></option><?php } ?></select></td>'+
 		'<td> <select name="tipo_actividad[]"><option>Seleccione una tipo</option>'+
-		'<?php foreach($tipos_actividad as $tipo_actividad){ ?><option value="<?php echo $tipo_actividad->id_tipo_actividad; ?>"><?php echo $tipo_actividad->tipo_actividad; ?></option><?php } ?></select></td>'+
+		'<?php foreach($tipos_actividad as $tipo_actividad){ ?><option value="<?php echo $tipo_actividad->id_tipo_actividad; ?>"> <?php echo $tipo_actividad->tipo_actividad; ?></option><?php } ?></select></td>'+
 		'<td> <input autocomplete="off" name="detalles[]" value="" placeholder="Detalle"></td>'+
 	  '<td> <input id="cantidad" name="cantidad[]" value="0" placeholder="Cantidad"><p hidden="hidden"></p></td>'+
 	  '<td> <input id="precio" name="precio[]" value="0" placeholder="Precio"><p hidden="hidden"></p></td>'+

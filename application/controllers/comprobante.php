@@ -36,6 +36,27 @@ class Comprobante extends CI_Controller {
 		$this->load->view('comprobante/listar',$datos);
 		$this->load->view('layout/footer');
 	}
+
+	public function ajax(){ 
+		$data= $this->comprobante_model->mostrar();
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]=$dato->id_comprobante;
+			$pasar[$i][1]=$dato->comprobante;
+			$pasar[$i][2]='<button aria-expanded="false" aria-haspopup="true" class="btn btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Opción</button>
+			<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+			<a class="dropdown-item" href="'. base_url('comprobante/edit/').$dato->id_comprobante .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#">Eliminar</a>
+			</div>';
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
+	}
+
 	public function registrar()
 	{		
 		$this->load->view('layout/header');

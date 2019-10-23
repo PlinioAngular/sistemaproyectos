@@ -33,9 +33,30 @@ class Cliente extends CI_Controller {
 	{
 		$datos["datos"]=$this->cliente_model->mostrar();
 		$this->load->view('layout/header');
-		$this->load->view('cliente/listar',$datos);
+		$this->load->view('cliente/listar');
 		$this->load->view('layout/footer');
 	}
+
+	public function ajax(){ 
+		$data= $this->cliente_model->mostrar();
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]=$dato->id_cliente;
+			$pasar[$i][1]=$dato->cliente;
+			$pasar[$i][2]='<button aria-expanded="false" aria-haspopup="true" class="btn btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Opción</button>
+			<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+			<a class="dropdown-item" href="'. base_url('welcome/edit/').$dato->id_cliente .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#">Eliminar</a>
+			</div>';
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
+	}
+
 	public function registrar()
 	{		
 		$this->load->view('layout/header');

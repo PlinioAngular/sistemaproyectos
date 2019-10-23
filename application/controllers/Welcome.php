@@ -33,9 +33,36 @@ class Welcome extends CI_Controller {
 	{
 		$datos["datos"]=$this->principal_model->mostrar();
 		$this->load->view('layout/header');
-		$this->load->view('principal/principal',$datos);
+		$this->load->view('principal/principal');
 		$this->load->view('layout/footer');
 	}
+
+	public function ajax(){ 
+		$data= $this->principal_model->mostrar();
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]=$dato->nombre_proyecto;
+			$pasar[$i][1]=$dato->codigo_proyecto;
+			$pasar[$i][2]=$dato->cliente;
+			$pasar[$i][3]=$dato->gerencia;
+			$pasar[$i][4]=$dato->area;
+			$pasar[$i][5]=$dato->sub_area;
+			$pasar[$i][6]=$dato->empresa;
+			$pasar[$i][7]='<button aria-expanded="false" aria-haspopup="true" class="btn btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Opción</button>
+			<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+			<a class="dropdown-item" href="'. base_url('welcome/edit/').$dato->id_proyecto .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#">Eliminar</a>
+			</div>';
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
+	}
+
+
 	function api()
 {
 	// Armamos el string de parámetros a enviar
@@ -65,7 +92,7 @@ $response = file_get_contents('http://172.16.10.50/restfulcc/api/v1/listadocc', 
 		$data['gerencias'] = $this->principal_model->mostrar_gerencia();
 		$data['areas'] = $this->principal_model->mostrar_area();
 		$data['sub_areas'] = $this->principal_model->mostrar_sub_area();
-		$data['tipos_actividad'] = $this->principal_model->mostrar_tipo_actividad();
+		$data['empresas'] = $this->principal_model->mostrar_empresa();
 		$this->load->view('layout/header');
 		$this->load->view('principal/registrar',$data);
 		$this->load->view('layout/footer');
@@ -76,7 +103,7 @@ $response = file_get_contents('http://172.16.10.50/restfulcc/api/v1/listadocc', 
 		$data['gerencias'] = $this->principal_model->mostrar_gerencia();
 		$data['areas'] = $this->principal_model->mostrar_area();
 		$data['sub_areas'] = $this->principal_model->mostrar_sub_area();
-		$data['tipos_actividad'] = $this->principal_model->mostrar_tipo_actividad();
+		$data['empresas'] = $this->principal_model->mostrar_empresa();
 		$data['proyecto'] = $this->principal_model->mostrar_por_id($id);
 		$this->load->view('layout/header');
 		$this->load->view('principal/editar',$data);

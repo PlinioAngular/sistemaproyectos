@@ -67,7 +67,8 @@
                         <div class="col-sm-2">
 							<div class="form-group">
 								<label for="">Tto.</label>
-								<select class="form-control select2" name="tratamiento">
+								<select class="form-control select2" name="tratamiento">}
+										<option value="0">SIN ALTERAR</option>
 										<option value="1">SALDO DIRECTO</option>
 										<option value="3">REPOSICION</option>
 										<option value="5">VUELTO</option>

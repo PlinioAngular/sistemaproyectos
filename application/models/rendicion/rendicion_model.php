@@ -82,10 +82,10 @@ class Rendicion_model extends CI_Model {
    dr.precio');
     $this->db->from("tbl_detalle_rendicion as dr");
     $this->db->where('dc.id_detalle_caja',$id);
-    $this->db->join("tbl_proyecto as p ","p.id_proyecto=dr.id_proyecto");
-    $this->db->join("tbl_clasificacion as cl ","cl.id_clasificacion=dr.id_clasificacion");
-    $this->db->join("tbl_tipo_actividad as t ","t.id_tipo_actividad=dr.id_tipo_actividad");
-    $this->db->join("tbl_comprobante as c ","c.id_comprobante=dr.id_comprobante");
+    $this->db->join("tbl_proyecto as p ","p.id_proyecto=dr.id_proyecto","left");
+    $this->db->join("tbl_clasificacion as cl ","cl.id_clasificacion=dr.id_clasificacion","left");
+    $this->db->join("tbl_tipo_actividad as t ","t.id_tipo_actividad=dr.id_tipo_actividad","left");
+    $this->db->join("tbl_comprobante as c ","c.id_comprobante=dr.id_comprobante","left");
     $this->db->join("tbl_rendicion as r ","r.id_rendicion=dr.id_rendicion");
     $this->db->join("tbl_detalle_caja as dc ","dc.id_detalle_caja=r.id_detalle_caja");
     $query=$this->db->get();      
@@ -120,6 +120,12 @@ class Rendicion_model extends CI_Model {
  	return $query->result();
  }
 
+ function setBloque(){
+   $this->db->select('max(bloque)+1 as bloque');
+   $this->db->from("tbl_rendicion");
+   return $this->db->get()->row()->bloque;
+ }
+
  function rendicion_add(){
     $fecha=$this->input->post('fechas');
     $periodo=$this->input->post('periodos');
@@ -137,7 +143,7 @@ class Rendicion_model extends CI_Model {
       'id_autoriza' => $this->input->post('id_autoriza'),
       'id_registra' =>$this->session->userdata('id'),
       'gasto' => $this->input->post('total'),
-      'bloque' => 1,
+      'bloque' => $this->setBloque(),
       'id_detalle_caja' => $this->input->post('id_detalle_caja'),
       'fecha_registro' => date("Y/m/d")
    );
@@ -157,7 +163,8 @@ class Rendicion_model extends CI_Model {
 else { return false;}
 }
 
-function rendicion_add_suma($id_detalle,$inicio,$fin){
+function rendicion_add_suma($id_detalle,$inicio,$fin,$bloque){
+   $suma=0;   
    $fecha=$this->input->post('fechas');
    $periodo=$this->input->post('periodos');
    $ruc=$this->input->post('ruc');
@@ -169,12 +176,15 @@ function rendicion_add_suma($id_detalle,$inicio,$fin){
    $tipo_actividad=$this->input->post('tipo_actividad');
    $cantidad=$this->input->post('cantidad');
    $precio=$this->input->post('precio');
+   for($i=$inicio;$i<=$fin;$i++){
+      $suma+=round(($precio[$i]*$cantidad[$i]),2);
+   }
    $descripcion=$this->input->post('detalles');
   $detalle = array(
      'id_autoriza' => $this->input->post('id_autoriza'),
      'id_registra' =>$this->session->userdata('id'),
-     'gasto' => $this->input->post('total'),
-     'bloque' => 1,
+     'gasto' => $suma,
+     'bloque' => $bloque,
      'id_detalle_caja' => $id_detalle,
      'fecha_registro' => date("Y/m/d")
   );
@@ -262,17 +272,9 @@ function add_detalle_rendicion($id_rendicion,$fecha,$periodo,$proyecto,$ruc,$com
 }
 
 function cambio_estado($id_detalle){
-   $egreso=$this->input->post('egreso');
-   $gasto=$this->input->post('total');
-   $saldo=$egreso-$gasto;
+   
    $tratamiento=$this->input->post('tratamiento');
-   if($saldo==0){
-      $estado=1;
-   }elseif($saldo>0){
-      $estado=4;
-   }else{
-      $estado=3;
-   }
+   
    $data = array(
       'estado' =>$tratamiento
       
@@ -322,7 +324,9 @@ function rendicion_edit(){
    if(count($precio)>0){
       if($this->db->update('tbl_rendicion',$detalle,array('id_rendicion' => $this->input->post('id_rendicion') ))){
          $update_id2=$this->edit_detalle_rendicion($id_detalle,$fecha,$periodo,$proyecto,$ruc,$comprobante,$serie,$numero,$clasificacion,$tipo_actividad,$cantidad,$precio,$descripcion);
-         $this->cambio_estado($this->input->post('id_detalle_caja'));
+         if($this->input->post('tratamiento')>0){
+            $this->cambio_estado($this->input->post('id_detalle_caja'));
+         }         
       } else{
          return false;
       }
@@ -366,7 +370,8 @@ function rendicion_edit(){
    return $update_id;
    }
    function rendiciones_web(){
-      $this->db->select('r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, sum(dc.monto) as egreso, sum(ren.gasto) as rendido, 
+      $this->db->select('r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, sum(dc.monto) as egreso,
+       sum(ren.gasto) as rendido, 
     (sum(dc.monto)-sum(ren.gasto)) as saldo,ren.fecha_registro,dc.id_detalle_caja');
     $this->db->where('dc.estado',2);
     $this->db->from("tbl_detalle_caja as dc");
@@ -378,7 +383,7 @@ function rendicion_edit(){
  	return $query->result();
    }
    function rendiciones_web_detalle($id){
-      $this->db->select('r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto as egreso, ren.gasto as rendido, 
+      $this->db->select('if(ren.id_registra=6,"SI",if(ren.id_registra=1072,"SI","NO")) as vb,r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto as egreso, ren.gasto as rendido, 
     (dc.monto-ren.gasto) as saldo,ren.fecha_registro,dc.id_detalle_caja,ren.id_rendicion');
     $this->db->where('dc.estado',2);
     $this->db->where('r.id_persona',$id);

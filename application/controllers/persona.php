@@ -37,6 +37,28 @@ class Persona extends CI_Controller {
 		$this->load->view('layout/footer');
 	}
 
+	public function ajax(){ 
+		$data= $this->persona_model->mostrar();
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]=$dato->id_persona;
+			$pasar[$i][1]=$dato->apellido_paterno.' '.$dato->apellido_materno;
+			$pasar[$i][2]=$dato->nombres;
+			$pasar[$i][3]=$dato->dni;
+			$pasar[$i][4]='<button aria-expanded="false" aria-haspopup="true" class="btn btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Opción</button>
+			<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+			<a class="dropdown-item" href="'. base_url('persona/edit/').$dato->id_persona .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#">Eliminar</a>
+			</div>';
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
+	}
+
 	public function getPersona(){
 		
 			$valor = $this->input->post("valor");

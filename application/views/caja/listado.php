@@ -12,7 +12,13 @@
               <div class="col col-sm-2">
                 <input value="<?php echo date('Y-m-d',strtotime(date('Y/m/d'))); ?>" type="date" name="fecha_inicio" id="fecha_inicio" class="form-control">
               </div>
-              <div class="col col-sm-8">
+              <div class="col col-sm-1">
+                <input value="1" type="checkbox" name="dos_fecha" id="dos_fecha" class="form-control">
+              </div>
+              <div class="col col-sm-2">
+                <input style="visibility:hidden" value="<?php echo date('Y-m-d',strtotime(date('Y/m/d'))); ?>" type="date" name="fecha_fin" id="fecha_fin" class="form-control">
+              </div>
+              <div class="col col-sm-5">
                 
               </div>
               <div class="col col-sm-2">
@@ -93,13 +99,27 @@ $(document).ready(function () {
              },
          }
      });
+     $("#dos_fecha").on('click',function(){
+      var porId=document.getElementById("dos_fecha").checked
+       if(porId)
+       {
+        document.getElementById("fecha_fin").style.visibility = "visible"; 
+       }
+       else {
+        document.getElementById("fecha_fin").style.visibility = "hidden";
+       }
+      
+         
+     });
      $("#fecha_inicio").on('change',function(){
       var fecha_inicio=$('#fecha_inicio').val();
+      var fecha_fin=$('#fecha_fin').val();
+      var dos_fechas=document.getElementById("dos_fecha").checked
       $('#dataTable').dataTable().fnClearTable();
     $('#dataTable').dataTable().fnDestroy();
     $('#dataTable').DataTable({
          "ajax":{
-           "data":{'fecha_inicio':fecha_inicio},
+           "data":{'fecha_inicio':fecha_inicio,'fecha_fin':fecha_fin,'dos_fecha':dos_fechas},
            "type":"post",
            "url":"<?php echo base_url('caja/ajax'); ?> "
            },

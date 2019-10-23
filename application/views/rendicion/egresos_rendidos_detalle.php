@@ -37,23 +37,7 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                  <?php foreach($datos as $dato) { ?>
-                    <tr>
-                      <td><?php echo $dato->apellido_paterno.' '.$dato->apellido_paterno.' '.$dato->nombres; ?></td>
-                      <td><?php echo $dato->egreso; ?></td>
-                      <td><?php echo $dato->rendido; ?></td>
-                      <td><?php echo $dato->saldo; ?></td>
-                      <td><?php if($dato->estado==0) { ?>
-			                    <a href="<?php echo base_url('rendicion/registrar/').$dato->id_detalle_caja; ?>" class="btn btn-info btn-circle btn-sm">
-                          <i class="far fa-eye"></i>
-                      <?php } else {   ?>
-                        <a href="<?php echo base_url('rendicion/editar/').$dato->id_detalle_caja; ?>" class="btn btn-info btn-circle btn-sm">
-                          <i class="fas fa-edit"></i>
-                      <?php } ?>
-                          </a>
-			                </td>
-                    </tr>    
-                  <?php } ?>                
+                             
                   </tbody>
                 </table>
               </div>
@@ -63,3 +47,31 @@
 </div>
 </div>
 </div>
+<script>
+$(document).ready(function () {
+  var id=<?php echo $id; ?>;
+ $('#dataTable').DataTable({
+         "ajax":{
+           "data":{'id':id},
+           "type":"post",
+           "url":"<?php echo base_url('rendicion/ajax_rendidos_detalle'); ?> "
+           },
+         "language": {
+             "lengthMenu": "Mostrar _MENU_ registros por pagina",
+             "zeroRecords": "No se encontraron resultados en su busqueda",
+             "searchPlaceholder": "Buscar registros",
+             "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+             "infoEmpty": "No existen registros",
+             "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+             "search": "Buscar:",
+             "paginate": {
+                 "first": "Primero",
+                 "last": "Último",
+                 "next": "Siguiente",
+                 "previous": "Anterior"
+             },
+         }
+     });
+     
+ });
+ </script>

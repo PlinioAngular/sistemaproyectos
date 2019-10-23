@@ -10,29 +10,29 @@ class Principal_model extends CI_Model {
  
  public function mostrar()
  {
-    $this->db->select('p.id_proyecto,p.codigo_proyecto,p.nombre_proyecto,c.cliente,g.gerencia,a.area,s.sub_area,t.tipo_actividad,
-    c.id_cliente,g.id_gerencia,a.id_area,s.id_sub_area,t.id_tipo_actividad');
+    $this->db->select('p.id_proyecto,p.codigo_proyecto,p.nombre_proyecto,c.cliente,g.gerencia,a.area,s.sub_area,t.empresa,
+    c.id_cliente,g.id_gerencia,a.id_area,s.id_sub_area,t.id_empresa');
     $this->db->from("tbl_proyecto as p");
     $this->db->join("tbl_cliente as c ","p.id_cliente=c.id_cliente");
     $this->db->join("tbl_gerencia as g ","p.id_gerencia=g.id_gerencia");
     $this->db->join("tbl_area as a ","p.id_area=a.id_area");
     $this->db->join("tbl_sub_area as s ","p.id_sub_area=s.id_sub_area");
-    $this->db->join("tbl_tipo_actividad as t ","p.id_tipo_actividad=t.id_tipo_actividad");
+    $this->db->join("tbl_empresa as t ","p.id_empresa=t.id_empresa");
     $query=$this->db->get();      
  	return $query->result();
  }
 
  public function mostrar_por_id($id)
  {
-   $this->db->select('p.id_proyecto,p.codigo_proyecto,p.nombre_proyecto,p.descripcion,c.cliente,g.gerencia,a.area,s.sub_area,t.tipo_actividad,
-   c.id_cliente,g.id_gerencia,a.id_area,s.id_sub_area,t.id_tipo_actividad');
+   $this->db->select('p.id_proyecto,p.codigo_proyecto,p.nombre_proyecto,p.descripcion,c.cliente,g.gerencia,a.area,s.sub_area,t.empresa,
+   c.id_cliente,g.id_gerencia,a.id_area,s.id_sub_area,t.id_empresa');
    $this->db->where('p.id_proyecto',$id);
    $this->db->from("tbl_proyecto as p");
    $this->db->join("tbl_cliente as c ","p.id_cliente=c.id_cliente");
    $this->db->join("tbl_gerencia as g ","p.id_gerencia=g.id_gerencia");
    $this->db->join("tbl_area as a ","p.id_area=a.id_area");
    $this->db->join("tbl_sub_area as s ","p.id_sub_area=s.id_sub_area");
-   $this->db->join("tbl_tipo_actividad as t ","p.id_tipo_actividad=t.id_tipo_actividad");
+   $this->db->join("tbl_empresa as t ","p.id_empresa=t.id_empresa");
     return $this->db->get()->row();
  }
 
@@ -110,7 +110,7 @@ class Principal_model extends CI_Model {
       'id_gerencia' => $this->input->post('id_gerencia'),
       'id_area' => $this->input->post('id_area'),
       'id_sub_area' => $this->input->post('id_sub_area'),
-      'id_tipo_actividad' => $this->input->post('id_tipo_actividad'),
+      'id_empresa' => $this->input->post('id_empresa'),
       'nombre_proyecto' => $this->input->post('nombre_proyecto'),
       'codigo_proyecto' => $this->input->post('codigo_proyecto'),
       'descripcion' => $this->input->post('descripcion'),
@@ -133,7 +133,7 @@ function proyecto_edit(){
       'id_gerencia' => $this->input->post('id_gerencia'),
       'id_area' => $this->input->post('id_area'),
       'id_sub_area' => $this->input->post('id_sub_area'),
-      'id_tipo_actividad' => $this->input->post('id_tipo_actividad'),
+      'id_empresa' => $this->input->post('id_empresa'),
       'nombre_proyecto' => $this->input->post('nombre_proyecto'),
       'codigo_proyecto' => $this->input->post('codigo_proyecto'),
       'descripcion' => $this->input->post('descripcion'),

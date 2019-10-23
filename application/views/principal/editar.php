@@ -86,12 +86,12 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="">Tipo de Actividad</label>
+								<label for="">Empresa</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="typcn typcn-plus"></i></a>
-								<select class="form-control select2" name="id_tipo_actividad" id="id_tipo_actividad">
-									<option value="<?php echo $proyecto->id_tipo_actividad;?>"><?php echo $proyecto->tipo_actividad;?></option>
-									<?php foreach ($tipos_actividad as $tipo_actividad) { ?>							
-									<option value="<?php echo $tipo_actividad->id_tipo_actividad;?>"><?php echo $tipo_actividad->tipo_actividad;?></option>
+								<select class="form-control select2" name="id_empresa" id="id_empresa">
+									<option value="<?php echo $proyecto->id_empresa;?>"><?php echo $proyecto->empresa;?></option>
+									<?php foreach ($empresas as $empresa) { ?>							
+									<option value="<?php echo $empresa->id_empresa;?>"><?php echo $empresa->empresa;?></option>
 									<?php } ?>
 								</select>
 							</div>

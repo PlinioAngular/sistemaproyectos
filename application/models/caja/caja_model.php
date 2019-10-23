@@ -10,8 +10,8 @@ class Caja_model extends CI_Model {
  
  public function mostrar()
  {
-    $this->db->select('dc.id_detalle_caja,ca.id_caja,dc.fecha,dc.periodo,p.nombre_proyecto,ba.banco,em.empresa,dc.detalle,g.gerencia,a.area,t.tipo_actividad,
-    c.id_cliente,g.id_gerencia,a.id_area,cla.clasificacion,r.nombres as nom_res,r.apellido_materno as am_res,r.apellido_paterno as ap_res,
+    $this->db->select('dc.id_detalle_caja,ca.id_caja,dc.fecha,dc.periodo,p.nombre_proyecto,ba.banco,em.empresa,dc.detalle,t.tipo_actividad,
+    cla.clasificacion,r.nombres as nom_res,r.apellido_materno as am_res,r.apellido_paterno as ap_res,
     b.nombres as nom_ben,b.apellido_materno as am_ben,b.apellido_paterno as ap_ben,b.nombres as nom_aut,b.apellido_materno as am_aut,b.apellido_paterno as ap_aut,
     rg.nombres as nom_reg,rg.apellido_materno as am_reg,rg.apellido_paterno as ap_reg,
     p.id_proyecto, dc.monto,dc.detalle, dc.fecha ');
@@ -24,12 +24,19 @@ class Caja_model extends CI_Model {
     $this->db->join("tbl_persona as au ","ca.id_autoriza=au.id_persona");
     $this->db->join("tbl_persona as rg ","ca.id_registra=rg.id_persona");    
     $this->db->join("tbl_proyecto as p ","dc.id_proyecto=p.id_proyecto");
-    $this->db->join("tbl_cliente as c ","dc.id_cliente=c.id_cliente");
-    $this->db->join("tbl_gerencia as g ","dc.id_gerencia=g.id_gerencia");
-    $this->db->join("tbl_area as a ","dc.id_area=a.id_area");
+    //$this->db->join("tbl_cliente as c ","dc.id_cliente=c.id_cliente");
+    //$this->db->join("tbl_gerencia as g ","dc.id_gerencia=g.id_gerencia");
+    //$this->db->join("tbl_area as a ","dc.id_area=a.id_area");
     $this->db->join("tbl_clasificacion as cla ","cla.id_clasificacion=dc.id_clasificacion");
     $this->db->join("tbl_tipo_actividad as t ","dc.id_tipo_actividad=t.id_tipo_actividad");
-    $this->db->where("dc.fecha",$this->input->post('fecha_inicio'));
+    
+    if($this->input->post('dos_fecha'))
+    {
+      $this->db->where("dc.fecha >=",$this->input->post('fecha_inicio'));
+      $this->db->where("dc.fecha <=",$this->input->post('fecha_fin'));
+    }    else{
+      $this->db->where("dc.fecha",$this->input->post('fecha_inicio'));
+    }
     $query=$this->db->get();      
  	return $query->result();
  }

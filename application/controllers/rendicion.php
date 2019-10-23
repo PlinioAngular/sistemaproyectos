@@ -39,40 +39,166 @@ class Rendicion extends CI_Controller {
 	
 	public function index()
 	{	
-		$datos["datos"]=$this->rendicion_model->mostrar();
 		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
 		$this->load->view('layout/header',$datos);
-		$this->load->view('rendicion/egresos_por_rendir',$datos);
+		$this->load->view('rendicion/egresos_por_rendir');
 		$this->load->view('layout/footer');
+	}
+
+	public function ajax(){ 
+		$data= $this->rendicion_model->mostrar();
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]=$dato->apellido_paterno.' '.$dato->apellido_paterno.' '.$dato->nombres;
+			$pasar[$i][1]=$dato->total;
+			$pasar[$i][2]='<a href="'. base_url('rendicion/listado_detalle/').$dato->id_persona.'" class="btn btn-info btn-circle btn-sm">
+			<i class="far fa-eye"></i></a>';
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
 	}
 	
 	public function listado_detalle($id)
 	{
 		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
-		$datos["datos"]=$this->rendicion_model->mostrar_persona_detalle($id);
+		$datos["id"]=$id;
 		$this->load->view('layout/header',$datos);
 		$this->load->view('rendicion/egresos_por_rendir_detalle',$datos);
 		$this->load->view('layout/footer');
 	}
 
+	public function ajax_detalle(){ 
+		$data= $this->rendicion_model->mostrar_persona_detalle($this->input->post('id'));
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]='<input name="select[]" class="form-control" type="checkbox" value="'.$dato->id_detalle_caja.'_'.$dato->total.'"  ><input type="hidden" name="id_persona" value="'.$dato->id_persona.'">';
+			$pasar[$i][1]=$dato->apellido_paterno.' '.$dato->apellido_paterno.' '.$dato->nombres;
+			$pasar[$i][2]=$dato->total;
+			$pasar[$i][3]='<a href="'. base_url('rendicion/registrar/').$dato->id_detalle_caja.'" class="btn btn-info btn-circle btn-sm">
+			<i class="far fa-eye"></i></a>';
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
+	}
+
 	public function egresos_rendidos()
 	{
-		$datos["datos"]=$this->rendicion_model->mostrar_egresos_rendidos();
-		
 		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
 		$this->load->view('layout/header',$datos);
-		$this->load->view('rendicion/egresos_rendidos',$datos);
+		$this->load->view('rendicion/egresos_rendidos');
 		$this->load->view('layout/footer');
+	}
+
+	public function ajax_rendidos(){ 
+		$data= $this->rendicion_model->mostrar_egresos_rendidos();
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]=$dato->apellido_paterno.' '.$dato->apellido_paterno.' '.$dato->nombres;
+			$pasar[$i][1]=$dato->egreso;
+			$pasar[$i][2]=$dato->rendido;
+			$pasar[$i][3]=$dato->saldo;
+			$pasar[$i][4]='<a href="'. base_url('rendicion/egresos_rendidos_detalle/').$dato->id_persona.'" class="btn btn-info btn-circle btn-sm">
+			<i class="far fa-eye"></i></a>';
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
+	}
+
+	public function egresos_rendidos_detalle($id)
+	{
+		$datos['id']=$id;
+		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
+		$this->load->view('layout/header',$datos);
+		$this->load->view('rendicion/egresos_rendidos_detalle',$datos);
+		$this->load->view('layout/footer');
+	}
+
+	public function ajax_rendidos_detalle(){ 
+		$data= $this->rendicion_model->mostrar_egresos_rendidos_listado($this->input->post('id'));
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]=$dato->apellido_paterno.' '.$dato->apellido_paterno.' '.$dato->nombres;
+			$pasar[$i][1]=$dato->egreso;
+			$pasar[$i][2]=$dato->rendido;
+			$pasar[$i][3]=$dato->saldo;
+			if($dato->estado==0){ 
+			$pasar[$i][4]='<a href="'. base_url('rendicion/registrar/').$dato->id_detalle_caja.'" class="btn btn-info btn-circle btn-sm">
+			<i class="far fa-eye"></i>';
+			} else {  
+				$pasar[$i][4]='<a href="'. base_url('rendicion/editar/').$dato->id_detalle_caja.'" class="btn btn-info btn-circle btn-sm">
+				<i class="fas fa-edit"></i>';
+			}
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
 	}
 
 	public function web()
 	{
-		$datos["datos"]=$this->rendicion_model->rendiciones_web();
+		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
+		$this->load->view('layout/header',$datos);
+		$this->load->view('rendicion/web');
+		$this->load->view('layout/footer');
+	}
+
+	public function ajax_web(){ 
+		$data= $this->rendicion_model->rendiciones_web();
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]=$dato->apellido_paterno.' '.$dato->apellido_paterno.' '.$dato->nombres;
+			$pasar[$i][1]=$dato->egreso;
+			$pasar[$i][2]=$dato->rendido;
+			$pasar[$i][3]=$dato->saldo;
+			$pasar[$i][4]='<a href="'. base_url('rendicion/web_detalle/').$dato->id_persona.'" class="btn btn-info btn-circle btn-sm">
+			<i class="far fa-eye"></i></a>';
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
+	}
+
+	public function web_detalle($id)
+	{
+		$datos["id"]=$id;
 		
 		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
 		$this->load->view('layout/header',$datos);
-		$this->load->view('rendicion/web',$datos);
+		$this->load->view('rendicion/web_detalle',$datos);
 		$this->load->view('layout/footer');
+	}
+
+	public function ajax_web_detalle(){ 
+		$data= $this->rendicion_model->rendiciones_web_detalle($this->input->post('id'));
+		$pasar=array();
+		$i=0;
+		foreach($data as $dato){
+			$pasar[$i][0]=$dato->vb.'<input type="hidden" name="vb[]" value="'.$dato->vb.'"><input type="hidden" name="id_detalle_caja[]" value="'.$dato->id_detalle_caja.'"><input type="hidden"  name="id_rendicion[]" value="'.$dato->id_rendicion.'">';
+			$pasar[$i][1]=$dato->apellido_paterno.' '.$dato->apellido_paterno.' '.$dato->nombres;
+			$pasar[$i][2]=$dato->egreso;
+			$pasar[$i][3]=$dato->rendido;
+			$pasar[$i][4]=$dato->saldo;			
+			$pasar[$i][5]='<a href="'. base_url('rendicion/editar/').$dato->id_detalle_caja.'" class="btn btn-info btn-circle btn-sm">
+				<i class="fas fa-edit"></i>';
+			
+			$i ++;
+		}
+		$respuesta= array(    
+			'data'=>  $pasar);
+		echo json_encode($respuesta);
 	}
 
 	public function suma()
@@ -106,27 +232,11 @@ class Rendicion extends CI_Controller {
 		$this->load->view('rendicion/rendicion_suma',$data);
 		$this->load->view('layout/footer');
 	}
-
-	public function web_detalle($id)
-	{
-		$datos["datos"]=$this->rendicion_model->rendiciones_web_detalle($id);
-		
-		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
-		$this->load->view('layout/header',$datos);
-		$this->load->view('rendicion/web_detalle',$datos);
-		$this->load->view('layout/footer');
-	}
-
-	public function egresos_rendidos_detalle($id)
-	{
-		$datos["datos"]=$this->rendicion_model->mostrar_egresos_rendidos_listado($id);
-		
-		$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
-		$this->load->view('layout/header',$datos);
-		$this->load->view('rendicion/egresos_rendidos_detalle',$datos);
-		$this->load->view('layout/footer');
-	}
 	
+	public function bloque(){
+		$datos=$this->rendicion_model->setBloque();
+		echo $datos;
+	}
 	public function registrar($id)
 	{
 		$data['clientes'] = $this->principal_model->mostrar_cliente();
@@ -177,6 +287,7 @@ class Rendicion extends CI_Controller {
 			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
 		}
 		else{
+			$bloque=$this->rendicion_model->setBloque();
 			$detalles=$this->input->post('id_detalle_caja');
 			$filas=$this->input->post('precio');			
 			$detalle=explode ("_", $detalles); 
@@ -184,7 +295,7 @@ class Rendicion extends CI_Controller {
 			for($i=0;$i<count($detalle) - 1 ;$i++){
 				$inicio=$i*$datos;
 				$fin=(($i+1)*$datos)-1;
-				if($qid = $this->rendicion_model->rendicion_add_suma($detalle[$i],$inicio,$fin))
+				if($qid = $this->rendicion_model->rendicion_add_suma($detalle[$i],$inicio,$fin,$bloque))
 			{
 				echo 'si_'.$qid;
 			}
