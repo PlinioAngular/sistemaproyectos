@@ -7,12 +7,12 @@
 				<div class="element-box">
 				<form id="edit_empresa" name="edit_empresa" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_empresa" name="id_empresa" value="<?php echo $empresa->id_empresa; ?>">
-                    <h5 class="form-header"> Añadir empresa de Ropa </h5>
-					<div class="form-desc"> Describe todas las características del producto. </div>
+                    <h5 class="form-header"> Editar Empresa</h5>
+					<div class="form-desc"> </div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">empresa de ropa</label><input autocomplete="off" value="<?php echo $empresa->empresa; ?>" class="form-control" placeholder="empresa" type="text" name="empresa" id="empresa">
+								<label for="">Nombre Empresa</label><input autocomplete="off" value="<?php echo $empresa->empresa; ?>" class="form-control" placeholder="empresa" type="text" name="empresa" id="empresa">
 							</div>
 						</div>					
 					</div>													

@@ -7,12 +7,12 @@
 				
 				<div class="element-box">
 				<form id="add_clasificacion" name="add_clasificacion" accept-charset="utf-8" enctype="multipart/form-data" method="post">
-					<h5 class="form-header"> Añadir clasificacion </h5>
-					<div class="form-desc"> Describe todas las características del clasificacion. </div>
+					<h5 class="form-header"> Añadir Clasificación </h5>
+					<div class="form-desc"> </div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de clasificacion</label><input autocomplete="off" class="form-control" placeholder="Nombre de clasificacion" type="text" name="clasificacion" id="clasificacion">
+								<label for="">Nombre Clasificacion</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="clasificacion" id="clasificacion">
 							</div>
 						</div>					
 					</div>													

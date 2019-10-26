@@ -129,10 +129,14 @@ class Caja extends CI_Controller {
 		$this->form_validation->set_rules('id_responsable','id_responsable', 'required');
 		$this->form_validation->set_rules('id_beneficiario','id_beneficiario', 'required');
 		$this->form_validation->set_rules('id_autoriza','id_autoriza', 'required');
+		$this->form_validation->set_rules('proyectos[]','proyectos[]', 'required');
+		$this->form_validation->set_rules('detalles[]','detalles[]', 'required');
+		$this->form_validation->set_rules('clasificaciones[]','clasificaciones[]', 'required');
+		$this->form_validation->set_rules('montos[]','montos[]', 'required|numeric');
 		
 		if($this->form_validation->run() == FALSE)
 		{
-			echo 'Uno o varios campos son obligatorios.';
+			echo 'Verifique que todo los camos estén llenados de manera adecuada.';
 			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
 		}
 		else
@@ -154,10 +158,14 @@ class Caja extends CI_Controller {
 		$this->form_validation->set_rules('id_responsable','id_responsable', 'required');
 		$this->form_validation->set_rules('id_beneficiario','id_beneficiario', 'required');
 		$this->form_validation->set_rules('id_autoriza','id_autoriza', 'required');
+		$this->form_validation->set_rules('proyectos[]','proyectos[]', 'required');
+		$this->form_validation->set_rules('detalles[]','detalles[]', 'required');
+		$this->form_validation->set_rules('clasificaciones[]','clasificaciones[]', 'required');
+		$this->form_validation->set_rules('montos[]','montos[]', 'required');
 		
 		if($this->form_validation->run() == FALSE)
 		{
-			echo 'Uno o varios campos son obligatorios.';
+			echo 'Verifique que todo los camos estén llenados de manera adecuada.';
 			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
 		}
 		else

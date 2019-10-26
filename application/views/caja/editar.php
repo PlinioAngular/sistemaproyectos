@@ -8,8 +8,9 @@
 				<div class="element-box">
 				<form  id="edit_caja" name="edit_caja" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" value="<?php echo $caja->id_caja; ?>" name="id_caja" id="id_caja">
-                    <h5 class="form-header"> Añadir Registro </h5>
-					<div class="form-desc"> Describe todos los datos del Movimiento. </div>
+                    <h5 class="form-header"> Editar Registro </h5>
+					<div class="form-desc"> Modifique los datos del Movimiento. </div>
+					<hr>
 					<div class="row">
 						<div class="col-sm-2">
 							<div class="form-group">

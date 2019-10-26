@@ -7,12 +7,12 @@
 				<div class="element-box">
 				<form id="edit_cliente" name="edit_cliente" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_cliente" name="id_cliente" value="<?php echo $cliente->id_cliente; ?>">
-                    <h5 class="form-header"> Añadir cliente de Ropa </h5>
-					<div class="form-desc"> Describe todas las características del producto. </div>
+                    <h5 class="form-header"> Editar Cliente </h5>
+					<div class="form-desc"></div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">cliente de ropa</label><input autocomplete="off" value="<?php echo $cliente->cliente; ?>" class="form-control" placeholder="cliente" type="text" name="cliente" id="cliente">
+								<label for="">Nombre de Cliente</label><input autocomplete="off" value="<?php echo $cliente->cliente; ?>" class="form-control" placeholder="cliente" type="text" name="cliente" id="cliente">
 							</div>
 						</div>					
 					</div>													

@@ -7,12 +7,12 @@
 				
 				<div class="element-box">
 				<form id="add_comprobante" name="add_comprobante" accept-charset="utf-8" enctype="multipart/form-data" method="post">
-					<h5 class="form-header"> Añadir comprobante </h5>
-					<div class="form-desc"> Describe todas las características del comprobante. </div>
+					<h5 class="form-header"> Añadir Comprobante </h5>
+					<div class="form-desc"> </div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de comprobante</label><input autocomplete="off" class="form-control" placeholder="Nombre de comprobante" type="text" name="comprobante" id="comprobante">
+								<label for="">Nombre Comprobante</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="comprobante" id="comprobante">
 							</div>
 						</div>					
 					</div>													

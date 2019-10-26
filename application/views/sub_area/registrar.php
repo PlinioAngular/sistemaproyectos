@@ -7,12 +7,12 @@
 				
 				<div class="element-box">
 				<form id="add_sub_area" name="add_sub_area" accept-charset="utf-8" enctype="multipart/form-data" method="post">
-					<h5 class="form-header"> Añadir sub_area </h5>
-					<div class="form-desc"> Describe todas las características del sub_area. </div>
+					<h5 class="form-header"> Añadir Sub Área </h5>
+					<div class="form-desc"> </div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de sub_area</label><input autocomplete="off" class="form-control" placeholder="Nombre de sub_area" type="text" name="sub_area" id="sub_area">
+								<label for="">Nombre de SubArea</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="sub_area" id="sub_area">
 							</div>
 						</div>					
 					</div>													

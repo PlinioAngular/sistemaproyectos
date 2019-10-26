@@ -25,9 +25,10 @@ class Area extends CI_Controller {
 			redirect(base_url());
 		}
 		$this->load->model(array('mantenimiento/area_model'));
- 		$this->load->library(array('session','form_validation'));
+ 		$this->load->library(array('session','form_validation','encryption'));
  		$this->load->helper(array('url','form'));
- 		$this->load->database('default');
+		 $this->load->database('default');
+		 $this->encryption->initialize(array('driver' => 'mcrypt'));
     }
 	public function index()
 	{
@@ -76,7 +77,7 @@ class Area extends CI_Controller {
 		
 		if($this->form_validation->run() == FALSE)
 		{
-			echo 'Uno o varios campos son obligatorios.';
+			echo 'Verifique todo los camos estén llenados de manera adecuada.';
 			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
 		}
 		else
@@ -97,7 +98,7 @@ class Area extends CI_Controller {
 		
 		if($this->form_validation->run() == FALSE)
 		{
-			echo 'Uno o varios campos son obligatorios.';
+			echo 'Verifique todo los camos estén llenados de manera adecuada.';
 			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
 		}
 		else

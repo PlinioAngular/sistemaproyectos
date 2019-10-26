@@ -9,8 +9,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Login</title>
-
+  <title>Sistema Proyectos</title>
+  <link rel="shortcut icon" href="<?php base_url()?>assets/img/logo.ico" />
   <!-- Custom fonts for this template-->
   <link href="<?php echo base_url()?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -37,7 +37,7 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
                   </div>
                   <?php if($this->session->flashdata("error")):?>
               <div class="alert alert-danger">
@@ -54,10 +54,10 @@
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label  class="custom-control-label" for="customCheck">Remember Me</label>
+                        <label  class="custom-control-label" for="customCheck">Recordarme</label>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">INICIAR SESIÓN</button>
                       
                     <hr>
                     <!--<a href="index.html" class="btn btn-google btn-user btn-block">
@@ -69,7 +69,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                    <a class="small" href="forgot-password.html">Olvidó Contraseña?</a>
                   </div>
                   <div class="text-center">
                     <a class="small" href="register.html">Create an Account!</a>

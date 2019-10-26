@@ -7,8 +7,8 @@
 				
 				<div class="element-box">
 				<form id="add_persona" name="add_persona" accept-charset="utf-8" enctype="multipart/form-data" method="post">
-					<h5 class="form-header"> Añadir persona </h5>
-					<div class="form-desc"> Describe todas las características de la persona. </div>
+					<h5 class="form-header"> Añadir Persona </h5>
+					<div class="form-desc"> Ingrese los datos básicos de la persona. </div>
 					<div class="row">
 						<div class="col-sm-6">
 						<div class="form-group">

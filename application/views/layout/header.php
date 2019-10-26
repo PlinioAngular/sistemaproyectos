@@ -95,9 +95,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <h6 class="collapse-header">Mantenimientos</h6>
             <a class="collapse-item" href="<?php echo base_url()?>caja">Listado</a>
             <a class="collapse-item" href="<?php echo base_url()?>caja/registrar">Registrar</a>
-            <a class="collapse-item" href="<?php echo base_url()?>area">Área</a>
-            <a class="collapse-item" href="<?php echo base_url()?>sub_area">Sub Área</a>
-            <a class="collapse-item" href="<?php echo base_url()?>tipo_actividad">Tipo de Actividad</a>
           </div>
         </div>
       </li>
@@ -143,7 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Reportes
       </div>
 
       <!-- Nav Item - Pages Collapse Menu 
@@ -205,7 +202,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
+          <!-- Topbar Search 
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -215,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
               </div>
             </div>
-          </form>
+          </form>-->
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -336,7 +333,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $this->session->userdata('nombre'); ?></span>
-                <img class="img-profile rounded-circle" src="https://scontent.flim12-1.fna.fbcdn.net/v/t1.0-1/p24x24/46525792_2185196881499891_8678669161796206592_n.jpg?_nc_cat=103&_nc_oc=AQl39imTs-N2_4RRMQVhKqZL0SRKRowkN0w7queCdNQ1N966dsFtzs9baIKwvq60LuQ&_nc_ht=scontent.flim12-1.fna&oh=e1e5e3a0d39831b6c24985492e212cf1&oe=5E0FE4EA"">
+                <img class="img-profile rounded-circle" src="https://scontent.faqp3-1.fna.fbcdn.net/v/t1.0-1/c1.1.159.159a/p160x160/51547991_638886156525305_2753120095965282304_n.jpg?_nc_cat=103&_nc_oc=AQlMM7afn2gGmNabKmAHdx1wSuiw4C0T2qPJH8I-yW4bVpQm5I6aeRUQ7u-sI8SFkQ2AFtSRqSs39HQpEOCWWvKR&_nc_ht=scontent.faqp3-1.fna&oh=f283e3da7f665414b3f3d6429a995100&oe=5E645AFC">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

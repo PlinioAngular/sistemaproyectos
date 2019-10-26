@@ -7,12 +7,12 @@
 				<div class="element-box">
 				<form id="edit_comprobante" name="edit_comprobante" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_comprobante" name="id_comprobante" value="<?php echo $comprobante->id_comprobante; ?>">
-                    <h5 class="form-header"> Añadir comprobante de Ropa </h5>
-					<div class="form-desc"> Describe todas las características del producto. </div>
+                    <h5 class="form-header"> Editar Comprobante </h5>
+					<div class="form-desc">  </div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">comprobante de ropa</label><input autocomplete="off" value="<?php echo $comprobante->comprobante; ?>" class="form-control" placeholder="comprobante" type="text" name="comprobante" id="comprobante">
+								<label for="">Nombre Comprobante</label><input autocomplete="off" value="<?php echo $comprobante->comprobante; ?>" class="form-control" placeholder="comprobante" type="text" name="comprobante" id="comprobante">
 							</div>
 						</div>					
 					</div>													

@@ -7,12 +7,12 @@
 				
 				<div class="element-box">
 				<form id="add_gerencia" name="add_gerencia" accept-charset="utf-8" enctype="multipart/form-data" method="post">
-					<h5 class="form-header"> Añadir gerencia </h5>
-					<div class="form-desc"> Describe todas las características del gerencia. </div>
+					<h5 class="form-header"> Añadir Gerencia </h5>
+					<div class="form-desc"> </div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de gerencia</label><input autocomplete="off" class="form-control" placeholder="Nombre de gerencia" type="text" name="gerencia" id="gerencia">
+								<label for="">Nombre de gerencia</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="gerencia" id="gerencia">
 							</div>
 						</div>					
 					</div>													

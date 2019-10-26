@@ -59,7 +59,8 @@
 				<div class="element-box">
 				<form  id="add_rendicion" name="add_rendicion" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<h5 class="form-header"> Añadir Registro </h5>
-					<div class="form-desc"> Describe todos los datos del Movimiento. </div>
+					<div class="form-desc"> Ingrese los datos de rendición </div>
+					<hr>
 					<div class="row">						
 						<div class="col-sm-6">
 							<div class="form-group">
@@ -355,13 +356,16 @@ alert(operaciones);
         
         function agregar2(fecha,ruc,comprobante,serie,numero,descripcion,cantidad,precio,total) {
     var tbody = $('#dataTable12 tbody'); 
+	var str=fecha.split("-");
+	var mes=str[1];
+	var year=str[0];
     
    var fila_contenido ;
    //Agregar fila nueva. 
    
       var fila_nueva = $('<tr id="filadatos" class="filadatos table" ondblclick="doble()">'+
 	  '<td> <input name="fechas[]" type="date" value="'+fecha+'"></td>'+
-	  '<td> <input name="periodos[]" value="" placeholder="Periodo"></td>'+
+	  '<td> <input name="periodos[]" value="'+mes+'-'+year+'" placeholder="Periodo"></td>'+
 	  '<td> <input name="ruc[]" value="'+ruc+'" placeholder="RUC"></td>'+
 	  '<td> <select name="comprobantes[]"><option>'+comprobante+'</option>'+
 	'<?php foreach($comprobantes as $comprobante){ ?><option value="<?php echo $comprobante->id_comprobante; ?>"><?php echo $comprobante->comprobante; ?></option><?php } ?></select></td>'+

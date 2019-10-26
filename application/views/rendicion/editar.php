@@ -8,8 +8,9 @@
 				<div class="element-box">
 				<form  id="edit_rendicion" name="edit_rendicion" accept-charset="utf-8" enctype="multipart/form-data" method="post">
                 <input type="hidden" id="id_rendicion" name="id_rendicion" value="<?php echo $datos->id_rendicion; ?>">
-					<h5 class="form-header"> Añadir Registro </h5>
-					<div class="form-desc"> Describe todos los datos del Movimiento. </div>
+					<h5 class="form-header"> Editar Registro </h5>
+					<div class="form-desc"> Modifique los datos de la rendición </div>
+					<hr>
 					<div class="row">						
 						<div class="col-sm-6">
 							<div class="form-group">
@@ -112,7 +113,7 @@
 								<tbody>
                                     <?php foreach($detalles_rendicion as $detalle_rendicion) { ?>
                                     <tr id="filadatos" class="filadatos table">
-                                        <td><input type="hidden" name="id_detalle_rendicion[]" value="<?php echo $detalle_rendicion->id_detalle_rendicion; ?>"><input name="fechas[]" type="date" value="<?php echo date('Y-m-d',strtotime($detalle_rendicion->fecha)); ?>"></td>
+                                        <td><input type="hidden" name="id_detalle_rendicion[]" value="<?php echo $detalle_rendicion->id_detalle_rendicion; ?>"><p style="visibility:hidden;display:none;"><?=$detalle_rendicion->id_detalle_rendicion ?></p><input name="fechas[]" type="date" value="<?php echo date('Y-m-d',strtotime($detalle_rendicion->fecha)); ?>"></td>
                                         <td><input name="periodos[]" value="<?php echo $detalle_rendicion->periodo; ?>" placeholder="Periodo"></td>
                                         <td><input name="ruc[]" value="<?php echo $detalle_rendicion->ruc; ?>" placeholder="RUC"></td>
                                         <td> <select name="comprobantes[]">
@@ -154,7 +155,7 @@
 					</div>													
 					<div class="form-buttons-w">
 						<button class="btn btn-primary" type="submit" id="grabar"> Guardar - Grabar</button>
-						
+						<input  id="id_eliminar" name="id_eliminar" value="" type="hidden" hidden="" readonly="">
 						<input  id="errormsg" name="errormsg" value="" type="hidden" hidden="" readonly="">
 					</div>
 				</form>
@@ -220,15 +221,67 @@ $(document).ready(function() {
 			opensuccess();
 		
 	});
-	
 
-$('#btn-agregar').on('click', function() {
-    var tbody = $('#dataTable12 tbody'); 
+	function agregar(){
+		var formData = new FormData($("#edit_rendicion")[0]);
+			$.ajax({
+				
+				url: "<?php echo base_url('rendicion/agregar_detalle'); ?>",
+				type: "POST",
+				data:formData,
+				async: true,
+				beforeSend: function(){
+					$('#guardarform').attr('disabled', 'disabled');
+					$('#grabar').prop('disabled', true);
+				},
+				success: function (msg) {
+				var str=msg.split("_");
+				var id=str[1];
+				var status=str[0];
+				
+					if(status=="si")
+					{
+						opensuccess();
+
+						setTimeout(function () {
+						add_columna(id);
+						}, 1500); //will call the function after 2 secs.
+					}
+					else
+					{
+						$('#errormsg').val(msg);
+						openerror();
+						return false;
+					}
+				},
+				error: function(data, xhr,textStatus,errorThrown) {
+					if(textStatus=='timeout'){
+						$('#errormsg').val("Error: Tiempo de conexión agotado.");
+						openerror();
+					 } else {
+					 	$('#errormsg').val(data);
+						openerror();
+					 }
+					//alert(JSON.stringify(errorThrown));
+				},			
+				complete: function() {
+					$('#grabar').prop('disabled', false);
+				},
+				timeout: 2000,
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			e.preventDefault();
+			opensuccess();
+	}
+	function add_columna(id){
+		var tbody = $('#dataTable12 tbody'); 
    var fila_contenido ;
    //Agregar fila nueva. 
    
       var fila_nueva = $('<tr id="filadatos" class="filadatos table">'+
-	  '<td> <input name="fechas[]" type="date"></td>'+
+	  '<td><input type="hidden" name="id_detalle_rendicion[]" value="'+id+'"><p style="visibility:hidden;display:none;">'+id+'</p> <input name="fechas[]" type="date"></td>'+
 	  '<td> <input name="periodos[]" value="" placeholder="Periodo"></td>'+
 	  '<td> <input name="ruc[]" value="" placeholder="RUC"></td>'+
 	  '<td> <select name="comprobantes[]"><option>Seleccione un comprobante</option>'+
@@ -252,12 +305,98 @@ $('#btn-agregar').on('click', function() {
 	  '</tr>');
       fila_nueva.append(fila_contenido); 
       tbody.append(fila_nueva); 
+	}
+	
+
+$('#btn-agregar').on('click', function() {
+	swal({
+  		title: "¿Está segura(o) de hacer la modificación?",
+  		text: "Al aceptar se agregará un registro a la rendición!",
+  		icon: "warning",
+  		buttons: true,
+  		dangerMode: true,
+		})
+		.then((willDelete) => {
+  		if (willDelete) {
+    		agregar();
+  		} else {
+    	swal("El registró no se modificó!");
+  		}
+});
+	
 
 });
+function eliminar(id){
+	var formData = new FormData($("#edit_rendicion")[0]);
+			$.ajax({
+				
+				url: "<?php echo base_url('rendicion/eliminar_detalle'); ?>",
+				type: "POST",
+				data:formData,
+				async: true,
+				beforeSend: function(){
+					$('#guardarform').attr('disabled', 'disabled');
+					$('#grabar').prop('disabled', true);
+				},
+				success: function (msg) {
+				var str=msg.split("_");
+				var id=str[1];
+				var status=str[0];
+				
+					if(status=="si")
+					{
+						opensuccess();
 
+						 //will call the function after 2 secs.
+					}
+					else
+					{
+						$('#errormsg').val(msg);
+						openerror();
+						return false;
+					}
+				},
+				error: function(data, xhr,textStatus,errorThrown) {
+					if(textStatus=='timeout'){
+						$('#errormsg').val("Error: Tiempo de conexión agotado.");
+						openerror();
+					 } else {
+					 	$('#errormsg').val(data);
+						openerror();
+					 }
+					//alert(JSON.stringify(errorThrown));
+				},			
+				complete: function() {
+					$('#grabar').prop('disabled', false);
+				},
+				timeout: 2000,
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			e.preventDefault();
+			opensuccess();
+}
 $(document).on("click","#borrar", function(){
-        $(this).closest("tr").remove();
-        sumar();
+	var tr = $(this).closest("tr").find("td:eq(0)").children("p").text();
+	$("#id_eliminar").val(tr);
+	swal({
+  		title: "¿Está segura(o) de hacer la modificación?",
+  		text: "Al aceptar se agregará un registro a la rendición!",
+  		icon: "warning",
+  		buttons: true,
+  		dangerMode: true,
+		})
+		.then((willDelete) => {
+  		if (willDelete) {
+			$(this).closest("tr").remove();
+			eliminar(tr);			
+        	sumar();
+  		} else {
+    	swal("El registró no se modificó!");
+  		}
+		});
+	
     });
 
 $(function () {

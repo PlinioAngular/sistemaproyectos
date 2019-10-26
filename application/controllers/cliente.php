@@ -46,7 +46,7 @@ class Cliente extends CI_Controller {
 			$pasar[$i][1]=$dato->cliente;
 			$pasar[$i][2]='<button aria-expanded="false" aria-haspopup="true" class="btn btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Opción</button>
 			<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
-			<a class="dropdown-item" href="'. base_url('welcome/edit/').$dato->id_cliente .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
+			<a class="dropdown-item" href="'. base_url('cliente/edit/').$dato->id_cliente .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="#">Eliminar</a>
 			</div>';
@@ -78,7 +78,7 @@ class Cliente extends CI_Controller {
 		
 		if($this->form_validation->run() == FALSE)
 		{
-			echo 'Uno o varios campos son obligatorios.';
+			echo 'Verifique que todo los camos estén llenados de manera adecuada.';
 			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
 		}
 		else
@@ -99,7 +99,7 @@ class Cliente extends CI_Controller {
 		
 		if($this->form_validation->run() == FALSE)
 		{
-			echo 'Uno o varios campos son obligatorios.';
+			echo 'Verifique que todo los camos estén llenados de manera adecuada.';
 			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
 		}
 		else

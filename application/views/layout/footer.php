@@ -58,7 +58,7 @@
  <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; Sistema Proyectos Satelital</span>
           </div>
         </div>
  </footer>
@@ -119,3 +119,6 @@
   <script src="<?php echo base_url()?>assets/js/demo/datatables-demo.js"></script>
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link href = "<?php echo base_url()?>assets/css/jquery-ui.css"
+         rel = "stylesheet">
+      <script src="<?php echo base_url()?>assets/js/jquery-ui-git.js"></script>

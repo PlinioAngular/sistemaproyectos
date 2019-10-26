@@ -1,13 +1,13 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Listado de Movimiento de Caja</h1>
-    <p class="mb-4">La siguiente tabla muestra los datos de los movimientos por proyecto a la fecha indicada <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+    <p class="mb-4">La siguiente tabla muestra los datos de los movimientos por proyecto dentro de <a target="_blank" href="http://sistemas.sattelital.com.pe/">Grupo Satelital</a> a la fecha indicada con opción a editar y esocger dentro de un rango.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables cliente</h6>
-            </div><br>
+              <h6 class="m-0 font-weight-bold text-primary">Listado de Egresos</h6>
+            </div><hr>
             <div class="row">
               <div class="col col-sm-2">
                 <input value="<?php echo date('Y-m-d',strtotime(date('Y/m/d'))); ?>" type="date" name="fecha_inicio" id="fecha_inicio" class="form-control">

@@ -8,11 +8,11 @@
 				<div class="element-box">
 				<form id="add_banco" name="add_banco" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<h5 class="form-header"> Añadir Banco </h5>
-					<div class="form-desc"> Describe todas las características del banco. </div>
+					<div class="form-desc"> Ingrese los datos del Banco </div>
 					<div class="row">
 						<div class="col-sm-6">
 						<div class="form-group">
-								<label for="">Nombre de banco</label><input autocomplete="off" class="form-control" placeholder="Nombre banco" type="text" name="banco" id="banco">
+								<label for="">Nombre Banco</label><input autocomplete="off" class="form-control" placeholder="Nombre banco" type="text" name="banco" id="banco">
 							</div>
 						</div>
 						<div class="col-sm-6">

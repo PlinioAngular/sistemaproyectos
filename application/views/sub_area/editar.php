@@ -7,12 +7,12 @@
 				<div class="element-box">
 				<form id="edit_sub_area" name="edit_sub_area" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_sub_area" name="id_sub_area" value="<?php echo $sub_area->id_sub_area; ?>">
-                    <h5 class="form-header"> Añadir sub_area de Ropa </h5>
-					<div class="form-desc"> Describe todas las características del producto. </div>
+                    <h5 class="form-header"> Editar Sub Área </h5>
+					<div class="form-desc"></div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">sub_area de ropa</label><input autocomplete="off" value="<?php echo $sub_area->sub_area; ?>" class="form-control" placeholder="sub_area" type="text" name="sub_area" id="sub_area">
+								<label for="">Nombre de SubArea</label><input autocomplete="off" value="<?php echo $sub_area->sub_area; ?>" class="form-control" placeholder="sub_area" type="text" name="sub_area" id="sub_area">
 							</div>
 						</div>					
 					</div>													

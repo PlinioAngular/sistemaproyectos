@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+    <h1 class="h3 mb-2 text-gray-800">Listado de Egresos a Rendir por Persona</h1>
+    <p class="mb-4">La presente tabla muestra el egreso total a rendir por persona dentro del <a target="_blank" href="http://sistemas.sattelital.com.pe/">Grupo Satelital</a> pudiendo escoger ver a detalle <a target="_blank" href="https://datatables.net"></a>.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables area</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Personas con Pendientes</h6>
             </div>
             <div class="row">
               <div class="col col-sm-10"></div>

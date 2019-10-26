@@ -7,12 +7,12 @@
 				<div class="element-box">
 				<form id="edit_clasificacion" name="edit_clasificacion" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_clasificacion" name="id_clasificacion" value="<?php echo $clasificacion->id_clasificacion; ?>">
-                    <h5 class="form-header"> Añadir clasificacion de Ropa </h5>
-					<div class="form-desc"> Describe todas las características del producto. </div>
+                    <h5 class="form-header">Editar Clasificación </h5>
+					<div class="form-desc"> </div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">clasificacion de ropa</label><input autocomplete="off" value="<?php echo $clasificacion->clasificacion; ?>" class="form-control" placeholder="clasificacion" type="text" name="clasificacion" id="clasificacion">
+								<label for="">Nombre Clasificación</label><input autocomplete="off" value="<?php echo $clasificacion->clasificacion; ?>" class="form-control" placeholder="clasificacion" type="text" name="clasificacion" id="clasificacion">
 							</div>
 						</div>					
 					</div>													

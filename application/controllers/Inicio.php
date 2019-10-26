@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Inicio extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -51,7 +51,7 @@ class Welcome extends CI_Controller {
 			$pasar[$i][6]=$dato->empresa;
 			$pasar[$i][7]='<button aria-expanded="false" aria-haspopup="true" class="btn btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Opción</button>
 			<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
-			<a class="dropdown-item" href="'. base_url('welcome/edit/').$dato->id_proyecto .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
+			<a class="dropdown-item" href="'. base_url('principal/edit/').$dato->id_proyecto .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="#">Eliminar</a>
 			</div>';

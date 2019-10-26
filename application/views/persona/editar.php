@@ -7,8 +7,8 @@
 				<div class="element-box">
 				<form id="edit_persona" name="edit_persona" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_persona" name="id_persona" value="<?php echo $persona->id_persona; ?>">
-                    <h5 class="form-header"> Añadir persona </h5>
-					<div class="form-desc"> Describe todas las características de la persona. </div>
+                    <h5 class="form-header"> Editar Persona </h5>
+					<div class="form-desc"> Modifique los datos de la persona. </div>
 					<div class="row">
 						<div class="col-sm-6">
 						<div class="form-group">

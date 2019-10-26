@@ -1,17 +1,17 @@
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+    <h1 class="h3 mb-2 text-gray-800">Listado de Clasificación de Costos</h1>
+    <p class="mb-4">La presente tabla muestra los datos de las distintas clasificaciones de los costos dentro del <a target="_blank" href="http://sistemas.sattelital.com.pe/">Grupo Satelital</a> con opciones a registrar, editar y dar de baja.<a target="_blank" href="https://datatables.net"></a>.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables clasificacion</h6>
-            </div>
+              <h6 class="m-0 font-weight-bold text-primary">Grupo Satelital</h6>
+            </div><hr>
             <div class="row">
               <div class="col col-sm-10"></div>
                 <div class="col col-sm-2">
-                <a class="btn btn-primary" href="<?php echo base_url(); ?>clasificacion/registrar">Agregar clasificacion</a>
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>clasificacion/registrar">Agregar Clasificación</a>
                 </div>
                 </div>
             <div class="card-body">

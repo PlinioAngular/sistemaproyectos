@@ -8,11 +8,11 @@
 				<div class="element-box">
 				<form id="add_cliente" name="add_cliente" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<h5 class="form-header"> Añadir Cliente </h5>
-					<div class="form-desc"> Describe todas las características del cliente. </div>
+					<div class="form-desc"></div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de cliente</label><input autocomplete="off" class="form-control" placeholder="Nombre de Cliente" type="text" name="cliente" id="cliente">
+								<label for="">Nombre de cliente</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="cliente" id="cliente">
 							</div>
 						</div>					
 					</div>													

@@ -1,3 +1,107 @@
+
+      
+      <!-- Javascript -->
+	  
+      <script>
+      
+	  $(function() {
+            var disProyecto  = Array();
+			var disPersona  = Array();
+            <?php foreach($proyectos as $proyecto){  ?>
+    				disProyecto.push(
+                  { label: "<?php echo $proyecto->nombre_proyecto; ?>", value: "<?php echo $proyecto->id_proyecto; ?>" }
+                  
+               );
+            <?php } ?>
+			<?php foreach ($personas as $persona) { ?>	
+				disPersona.push(
+                  { label: "<?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres; ?>", value: "<?php echo $persona->id_persona; ?>" }
+                  
+               );
+            <?php } ?>  
+            $( "#responsable_id" ).autocomplete({
+               minLength: 0,
+               source: disPersona,
+               focus: function( event, ui ) {
+                  $( "#responsable_id" ).val( ui.item.label );
+                     return false;
+               },
+               select: function( event, ui ) {
+                  $( "#responsable_id" ).val( ui.item.label );
+				  $("#id_responsable").val(ui.item.value);
+                  return false;
+               }
+            })
+				
+            .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+               return $( "<li>" )
+               .append( "<a>" + item.label + "<br></a>" )
+               .appendTo( ul );
+            };
+
+			$( "#beneficiario_id" ).autocomplete({
+               minLength: 0,
+               source: disPersona,
+               focus: function( event, ui ) {
+                  $( "#beneficiario_id" ).val( ui.item.label );
+                     return false;
+               },
+               select: function( event, ui ) {
+                  $( "#beneficiario_id" ).val( ui.item.label );
+				  $("#id_beneficiario").val(ui.item.value);
+                  return false;
+               }
+            })
+				
+            .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+               return $( "<li>" )
+               .append( "<a>" + item.label + "<br></a>" )
+               .appendTo( ul );
+            };
+
+			$( "#autoriza_id" ).autocomplete({
+               minLength: 0,
+               source: disPersona,
+               focus: function( event, ui ) {
+                  $( "#autoriza_id" ).val( ui.item.label );
+                     return false;
+               },
+               select: function( event, ui ) {
+                  $( "#autoriza_id" ).val( ui.item.label );
+				  $("#id_autoriza").val(ui.item.value);
+                  return false;
+               }
+            })
+				
+            .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+               return $( "<li>" )
+               .append( "<a>" + item.label + "<br></a>" )
+               .appendTo( ul );
+            };
+            
+            $( "#proyecto_id" ).autocomplete({
+               minLength: 0,
+               source: disProyecto,
+               focus: function( event, ui ) {
+                  $( "#proyecto_id" ).val( ui.item.label );
+                     return false;
+               },
+               select: function( event, ui ) {
+                  $( "#proyecto_id" ).val( ui.item.label );
+                  var id_proyecto=ui.item.value ;
+                  var nombre_proyecto=ui.item.label ;
+                  agregar(id_proyecto,nombre_proyecto);
+                  return false;
+               }
+            })
+				
+            .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+               return $( "<li>" )
+               .append( "<a>" + item.label + "<br></a>" )
+               .appendTo( ul );
+            };
+         });
+      </script>
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="content-box">
@@ -9,6 +113,7 @@
 				<form  id="add_caja" name="add_caja" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<h5 class="form-header"> Añadir Registro </h5>
 					<div class="form-desc"> Describe todos los datos del Movimiento. </div>
+					<hr>
 					<div class="row">
 						<div class="col-sm-2">
 							<div class="form-group">
@@ -69,24 +174,26 @@
 							<div class="form-group">
 								<label for="">Persona Responsable</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<select class="form-control select2" name="id_responsable" id="id_responsable">
+								<input id = "responsable_id"class="form-control"><input type="hidden"name="id_responsable" id="id_responsable">
+								<!--<select class="form-control select2" name="id_responsable" id="id_responsable">
 									<option value="0">--Seleccione a responsable--</option>
 									<?php foreach ($personas as $persona) { ?>							
 									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
 									<?php } ?>
-								</select>
+								</select>-->
 							</div>		
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="">Beneficiario</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<select class="form-control select2" name="id_beneficiario" id="id_beneficiario">
-									<option value="0">--Seleccione a beneficiario--</option>
+								<input id = "beneficiario_id"class="form-control"><input type="hidden"name="id_beneficiario" id="id_beneficiario">
+								<!--<select class="form-control select2" name="id_responsable" id="id_responsable">
+									<option value="0">--Seleccione a responsable--</option>
 									<?php foreach ($personas as $persona) { ?>							
 									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
 									<?php } ?>
-								</select>
+								</select>-->
 							</div>		
 						</div>	
 					</div>
@@ -95,24 +202,26 @@
 							<div class="form-group">
 								<label for="">Persona que Autoriza</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<select class="form-control select2" name="id_autoriza" id="id_autoriza">
-									<option value="0">--Seleccione a quien autoriza--</option>
+								<input id = "autoriza_id"class="form-control"><input type="hidden"name="id_autoriza" id="id_autoriza">
+								<!--<select class="form-control select2" name="id_responsable" id="id_responsable">
+									<option value="0">--Seleccione a responsable--</option>
 									<?php foreach ($personas as $persona) { ?>							
 									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
 									<?php } ?>
-								</select>
+								</select>-->
 							</div>		
 						</div>	
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="">Proyecto</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<select class="form-control select2" name="id_proyecto" id="id_proyecto">
+								<input id = "proyecto_id"class="form-control"><!--
+								<<select class="form-control select2" name="id_proyecto" id="id_proyecto">
 									<option value="0">--Seleccione proyecto-</option>
 									<?php foreach ($proyectos as $proyecto) { ?>							
 									<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo $proyecto->nombre_proyecto;?></option>
 									<?php } ?>
-								</select>
+								</select>-->
 							</div>		
 						</div>
 															
@@ -265,7 +374,7 @@ $('#id_proyecto').on('change', function() {
    //Agregar fila nueva. 
    
       var fila_nueva = $('<tr id="filadatos" class="filadatos table">'+
-	  '<td> <input name="fechas[]" type="date"></td>'+
+	  '<td> <input name="fechas[]" type="date" value=""></td>'+
 	  '<td> <input name="periodos[]" value="" placeholder="Periodo"></td>'+
 	  '<td> <select name="proyectos[]"><option value="'+id_proyecto+'">'+nombre_proyecto+'</option>'+
       <?php foreach ($proyectos as $proyecto) { ?>							
@@ -297,6 +406,30 @@ $(function () {
     });
 });
 });
+
+function agregar(id,nombre){
+      var tbody = $('#dataTable12 tbody'); 
+   var fila_contenido ;
+   //Agregar fila nueva. 
+   
+      var fila_nueva = $('<tr id="filadatos" class="filadatos table">'+
+	  '<td> <input name="fechas[]" type="date" value="<?php echo date("Y-m-d"); ?>"></td>'+
+	  '<td> <input name="periodos[]" placeholder="Periodo" value="<?php echo date("m-Y"); ?>"></td>'+
+	  '<td> <select name="proyectos[]"><option value="'+id+'">'+nombre+'</option>'+
+      <?php foreach ($proyectos as $proyecto) { ?>							
+									'<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo $proyecto->nombre_proyecto;?></option>'+
+									<?php } ?>'</select></td>'+
+	  '<td> <input name="lugares[]" value="" placeholder="Lugar"></td>'+
+	  '<td> <input autocomplete="off" name="montos[]" type="text" id="monto"><p hidden="hidden"></p></td>'+
+	  '<td> <input autocomplete="off" name="detalles[]" value="" placeholder="Detalle"></td>'+
+	  '<td> <select name="clasificaciones[]"><option>Seleccione una clasificación</option>'+
+	  '<?php foreach($clasificaciones as $clasificacion){ ?><option value="<?php echo $clasificacion->id_clasificacion; ?>"><?php echo $clasificacion->clasificacion; ?></option><?php } ?></select></td>'+
+	    
+	  '<td> <a href="#" id="borrar" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i> </a></td>'+
+	  '</tr>');
+      fila_nueva.append(fila_contenido); 
+      tbody.append(fila_nueva); 
+    }
 
 function sumar(){
 	var total=0;

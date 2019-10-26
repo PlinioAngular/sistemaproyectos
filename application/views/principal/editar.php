@@ -120,7 +120,7 @@ $(document).ready(function() {
 			var formData = new FormData($(this)[0]);
 			$.ajax({
 				
-				url: "<?php echo base_url('welcome/proyecto_edit'); ?>",
+				url: "<?php echo base_url('inicio/proyecto_edit'); ?>",
 				type: "POST",
 				data: formData,
 				async: true,
@@ -138,7 +138,7 @@ $(document).ready(function() {
 						opensuccess();
 
 						setTimeout(function () {
-						window.location.href="<?php echo base_url('welcome' ); ?>/";
+						window.location.href="<?php echo base_url('inicio' ); ?>/";
 						}, 1500); //will call the function after 2 secs.
 					}
 					else

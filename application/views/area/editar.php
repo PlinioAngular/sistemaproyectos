@@ -7,12 +7,12 @@
 				<div class="element-box">
 				<form id="edit_area" name="edit_area" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_area" name="id_area" value="<?php echo $area->id_area; ?>">
-                    <h5 class="form-header"> Añadir area de Ropa </h5>
-					<div class="form-desc"> Describe todas las características del producto. </div>
+                    <h5 class="form-header"> Editar área </h5>
+					<div class="form-desc"></div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">area de ropa</label><input autocomplete="off" value="<?php echo $area->area; ?>" class="form-control" placeholder="area" type="text" name="area" id="area">
+								<label for="">Nombre de área</label><input autocomplete="off" value="<?php echo $area->area; ?>" class="form-control" placeholder="area" type="text" name="area" id="area">
 							</div>
 						</div>					
 					</div>													

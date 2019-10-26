@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+    <h1 class="h3 mb-2 text-gray-800">Listado total de Egresos Rendidos-No rendidos</h1>
+    <p class="mb-4">La presente tabla muestra el listado de egresos totales - Rendidos y no Rendidos- por cada personal con opción a ver el detalle<a target="_blank" href="https://datatables.net"></a>.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables area</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Lsitado de Egresos Totales por cada Personal</h6>
             </div>
             <div class="row">
               <div class="col col-sm-10"></div>

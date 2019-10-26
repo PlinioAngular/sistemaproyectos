@@ -7,12 +7,12 @@
 				<div class="element-box">
 				<form id="edit_tipo_actividad" name="edit_tipo_actividad" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_tipo_actividad" name="id_tipo_actividad" value="<?php echo $tipo_actividad->id_tipo_actividad; ?>">
-                    <h5 class="form-header"> Añadir tipo_actividad de Ropa </h5>
-					<div class="form-desc"> Describe todas las características del producto. </div>
+                    <h5 class="form-header"> Edita Tipo de Actividad</h5>
+					<div class="form-desc"> </div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">tipo_actividad de ropa</label><input autocomplete="off" value="<?php echo $tipo_actividad->tipo_actividad; ?>" class="form-control" placeholder="tipo_actividad" type="text" name="tipo_actividad" id="tipo_actividad">
+								<label for="">Nombre TipoActividad</label><input autocomplete="off" value="<?php echo $tipo_actividad->tipo_actividad; ?>" class="form-control" placeholder="tipo_actividad" type="text" name="tipo_actividad" id="tipo_actividad">
 							</div>
 						</div>					
 					</div>													

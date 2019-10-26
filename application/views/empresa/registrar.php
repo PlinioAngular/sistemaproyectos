@@ -7,12 +7,12 @@
 				
 				<div class="element-box">
 				<form id="add_empresa" name="add_empresa" accept-charset="utf-8" enctype="multipart/form-data" method="post">
-					<h5 class="form-header"> Añadir empresa </h5>
-					<div class="form-desc"> Describe todas las características del empresa. </div>
+					<h5 class="form-header"> Añadir Empresa </h5>
+					<div class="form-desc"></div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de empresa</label><input autocomplete="off" class="form-control" placeholder="Nombre de empresa" type="text" name="empresa" id="empresa">
+								<label for="">Nombre Empresa</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="empresa" id="empresa">
 							</div>
 						</div>					
 					</div>													

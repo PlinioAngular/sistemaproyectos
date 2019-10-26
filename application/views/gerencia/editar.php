@@ -8,11 +8,11 @@
 				<form id="add_gerencia" name="add_gerencia" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_gerencia" name="id_gerencia" value="<?php echo $gerencia->id_gerencia; ?>">
                     <h5 class="form-header"> Editar Gerencia </h5>
-					<div class="form-desc"> Describe todas las características del producto. </div>
+					<div class="form-desc"></div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Gerencia </label><input autocomplete="off" value="<?php echo $gerencia->gerencia; ?>" class="form-control" placeholder="gerencia" type="text" name="gerencia" id="gerencia">
+								<label for="">Nombre de Gerencia </label><input autocomplete="off" value="<?php echo $gerencia->gerencia; ?>" class="form-control" placeholder="gerencia" type="text" name="gerencia" id="gerencia">
 							</div>
 						</div>					
 					</div>													

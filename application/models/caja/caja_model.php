@@ -12,7 +12,7 @@ class Caja_model extends CI_Model {
  {
     $this->db->select('dc.id_detalle_caja,ca.id_caja,dc.fecha,dc.periodo,p.nombre_proyecto,ba.banco,em.empresa,dc.detalle,t.tipo_actividad,
     cla.clasificacion,r.nombres as nom_res,r.apellido_materno as am_res,r.apellido_paterno as ap_res,
-    b.nombres as nom_ben,b.apellido_materno as am_ben,b.apellido_paterno as ap_ben,b.nombres as nom_aut,b.apellido_materno as am_aut,b.apellido_paterno as ap_aut,
+    b.nombres as nom_ben,b.apellido_materno as am_ben,b.apellido_paterno as ap_ben,au.nombres as nom_aut,au.apellido_materno as am_aut,au.apellido_paterno as ap_aut,
     rg.nombres as nom_reg,rg.apellido_materno as am_reg,rg.apellido_paterno as ap_reg,
     p.id_proyecto, dc.monto,dc.detalle, dc.fecha ');
     $this->db->from("tbl_detalle_caja as dc");
@@ -129,7 +129,7 @@ class Caja_model extends CI_Model {
       'id_banco' => $this->input->post('id_banco'),
       $movimiento => $this->input->post('total'),
       'fecha_registro' => date("Y/m/d"),
-      'moneda' => $this->input->post('moneda'),
+      'moneda' => $this->input->post('moneda',true),
       'tipo' => $this->input->post('tipo'),
    );
 

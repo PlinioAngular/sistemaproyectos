@@ -7,12 +7,12 @@
 				<div class="element-box">
 				<form id="edit_banco" name="edit_banco" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="id_banco" name="id_banco" value="<?php echo $banco->id_banco; ?>">
-                    <h5 class="form-header"> Añadir banco </h5>
-					<div class="form-desc"> Describe todas las características de la banco. </div>
+                    <h5 class="form-header"> Editar banco </h5>
+					<div class="form-desc"> Modifique los datos del Banco. </div>
 					<div class="row">
 						<div class="col-sm-6">
 						<div class="form-group">
-								<label for="">Nombre de banco</label><input value="<?php echo $banco->banco; ?>" autocomplete="off" class="form-control" placeholder="Nombre banco" type="text" name="banco" id="banco">
+								<label for="">Nombre de Banco</label><input value="<?php echo $banco->banco; ?>" autocomplete="off" class="form-control" placeholder="Nombre banco" type="text" name="banco" id="banco">
 							</div>
 						</div>
 						<div class="col-sm-6">

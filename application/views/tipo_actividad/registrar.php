@@ -7,12 +7,12 @@
 				
 				<div class="element-box">
 				<form id="add_tipo_actividad" name="add_tipo_actividad" accept-charset="utf-8" enctype="multipart/form-data" method="post">
-					<h5 class="form-header"> Añadir tipo_actividad </h5>
-					<div class="form-desc"> Describe todas las características del tipo_actividad. </div>
+					<h5 class="form-header"> Añadir Tipo de Actividad </h5>
+					<div class="form-desc">  </div>
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de tipo_actividad</label><input autocomplete="off" class="form-control" placeholder="Nombre de tipo_actividad" type="text" name="tipo_actividad" id="tipo_actividad">
+								<label for="">Nombre de TipoActividad</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="tipo_actividad" id="tipo_actividad">
 							</div>
 						</div>					
 					</div>													

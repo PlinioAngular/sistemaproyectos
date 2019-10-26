@@ -67,7 +67,7 @@ class Banco extends CI_Controller {
 
 		if($this->form_validation->run() == FALSE)
 		{
-			echo 'Uno o varios campos son obligatorios.';
+			echo 'Verifique todo los camos estén llenados de manera adecuada.';
 			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
 		}
 		else
@@ -91,7 +91,7 @@ class Banco extends CI_Controller {
 		
 		if($this->form_validation->run() == FALSE)
 		{
-			echo 'Uno o varios campos son obligatorios.';
+			echo 'Verifique todo los camos estén llenados de manera adecuada.';
 			//sleep(3); //TEST DE TIEMPO DE RESPUESTA
 		}
 		else

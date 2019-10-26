@@ -271,6 +271,41 @@ function add_detalle_rendicion($id_rendicion,$fecha,$periodo,$proyecto,$ruc,$com
    return $insert_id;
 }
 
+function add_detalle(){
+   $insert_id=0;
+   $data = array(
+      'id_rendicion' => $this->input->post('id_rendicion'),
+      'fecha' => date("Y/m/d"),
+      'periodo' => date("m-Y"),
+      'id_proyecto' => 1,
+      'id_cliente' => 1,
+      'id_gerencia' => 1,
+      'id_area' => 1,
+      'id_sub_area' => 1,
+      'id_tipo_actividad' => 1,
+      'ruc' => 0,
+      'id_comprobante' => 1,
+      'serie' => '',
+      'numero_comprobante' => '',
+      'descripcion' => '',
+      'cantidad' => 0,
+      'precio' => 0,
+      'id_clasificacion' => 1
+   );
+
+   if(!$this->db->table_exists('tbl_detalle_rendicion')){ //VALIDA SI EXISTE LA TABLA
+      return false;
+   }
+   
+   $insert_fun = $this->db->insert('tbl_detalle_rendicion',$data);
+   $insert_id = $this->db->insert_id(); 
+   
+   return $insert_id;
+}
+function eliminar_detalle(){
+   return $this->db->delete('tbl_detalle_rendicion', array('id_detalle_rendicion' => $this->input->post('id_eliminar')));
+}
+
 function cambio_estado($id_detalle){
    
    $tratamiento=$this->input->post('tratamiento');
@@ -289,6 +324,27 @@ if(!$this->db->update('tbl_detalle_caja',$data,array('id_detalle_caja' => $id_de
 }
 
 $update_id = $this->input->post('id_detalle_caja');
+return $update_id;
+}
+function cambio_fecha($id_rendicion,$bloque){
+   
+   
+   $data = array(
+      'fecha_registro' =>date("Y/m/d"),
+      'bloque'=>$bloque,
+      'id_registra'=>$this->session->userdata('id')
+      
+   );
+
+if(!$this->db->table_exists('tbl_rendicion')){ //VALIDA SI EXISTE LA TABLA
+   return false;
+}   
+
+if(!$this->db->update('tbl_rendicion',$data,array('id_rendicion' => $id_rendicion ))){
+   return false;
+}
+
+$update_id = $this->input->post('id_rendicion');
 return $update_id;
 
 
