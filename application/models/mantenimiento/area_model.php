@@ -20,7 +20,7 @@ class Area_model extends CI_Model {
  {
  	$this->db->select('*');
     
-	 $this->db->where('id_area',$id);
+	 $this->db->where('md5(id_area)',$id);
     $this->db->from("tbl_area");
     return $this->db->get()->row();
  }

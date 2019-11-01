@@ -10,13 +10,9 @@ class Auth extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->userdata("login")) {
-			if($this->session->userdata("rol")=="CAJA"){
-				redirect(base_url('caja'));
-			}elseif($this->session->userdata("rol")=="RENDICION"){
-				redirect(base_url('rendicion'));
-			}elseif($this->session->userdata("rol")=="ADMINISTRADOR"){
+			
 				redirect(base_url('inicio'));
-			}
+			
 		}
 		else{
 			$this->load->view("layout/login");

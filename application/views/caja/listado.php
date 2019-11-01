@@ -77,28 +77,7 @@
 <script>
 $(document).ready(function () {
  var fecha_inicio=$('#fecha_inicio').val();
- $('#dataTable').DataTable({
-         "ajax":{
-           "data":{'fecha_inicio':fecha_inicio},
-           "type":"post",
-           "url":"<?php echo base_url('caja/ajax'); ?> "
-           },
-         "language": {
-             "lengthMenu": "Mostrar _MENU_ registros por pagina",
-             "zeroRecords": "No se encontraron resultados en su busqueda",
-             "searchPlaceholder": "Buscar registros",
-             "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
-             "infoEmpty": "No existen registros",
-             "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-             "search": "Buscar:",
-             "paginate": {
-                 "first": "Primero",
-                 "last": "Último",
-                 "next": "Siguiente",
-                 "previous": "Anterior"
-             },
-         }
-     });
+ buscar();
      $("#dos_fecha").on('click',function(){
       var porId=document.getElementById("dos_fecha").checked
        if(porId)
@@ -108,11 +87,18 @@ $(document).ready(function () {
        else {
         document.getElementById("fecha_fin").style.visibility = "hidden";
        }
-      
+      buscar();
          
      });
      $("#fecha_inicio").on('change',function(){
-      var fecha_inicio=$('#fecha_inicio').val();
+      buscar();
+     });
+     $("#fecha_fin").on('change',function(){
+      buscar();
+     });
+ });
+ function buscar(){
+  var fecha_inicio=$('#fecha_inicio').val();
       var fecha_fin=$('#fecha_fin').val();
       var dos_fechas=document.getElementById("dos_fecha").checked
       $('#dataTable').dataTable().fnClearTable();
@@ -139,6 +125,5 @@ $(document).ready(function () {
              },
          }
      });
-     });
- });
+ }
  </script>

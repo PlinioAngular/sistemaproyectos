@@ -63,7 +63,7 @@
 					<hr>
 					<div class="row">						
 						<div class="col-sm-6">
-							<div class="form-group">
+							<div class="form-group"><input type="hidden" value="<?php echo $datos->id_persona; ?>" name="id_responsable">
 								<label for="">Responsable</label>
 								<input type="text" readonly="" class="form-control" value="<?php echo $datos->apellido_paterno.' '.$datos->apellido_materno.' '.$datos->nombres; ?>">
 							</div>
@@ -99,7 +99,7 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="form-group">
-								<label for="">Egreso</label>
+								<label for="">Egreso</label><input type="hidden" name="moneda" value="<?php echo $moneda; ?>">
 								<input type="hidden" name="id_detalle_caja" id="id_detalle_caja" value="<?php echo $seleccionados; ?>"><input type="text" readonly="" class="form-control" id="egreso" name="egreso" value="<?php echo $suma; ?>">
 							</div>
 						</div>	

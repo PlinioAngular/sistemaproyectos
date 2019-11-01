@@ -34,26 +34,6 @@
                .appendTo( ul );
             };
 
-			$( "#beneficiario_id" ).autocomplete({
-               minLength: 0,
-               source: disPersona,
-               focus: function( event, ui ) {
-                  $( "#beneficiario_id" ).val( ui.item.label );
-                     return false;
-               },
-               select: function( event, ui ) {
-                  $( "#beneficiario_id" ).val( ui.item.label );
-				  $("#id_beneficiario").val(ui.item.value);
-                  return false;
-               }
-            })
-				
-            .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-               return $( "<li>" )
-               .append( "<a>" + item.label + "<br></a>" )
-               .appendTo( ul );
-            };
-
 			$( "#autoriza_id" ).autocomplete({
                minLength: 0,
                source: disPersona,
@@ -73,7 +53,7 @@
                .append( "<a>" + item.label + "<br></a>" )
                .appendTo( ul );
             };
-            
+
             $( "#proyecto_id" ).autocomplete({
                minLength: 0,
                source: disProyecto,
@@ -82,10 +62,8 @@
                      return false;
                },
                select: function( event, ui ) {
-                  $( "#proyecto_id" ).val( ui.item.label );
-                  var id_proyecto=ui.item.value ;
-                  var nombre_proyecto=ui.item.label ;
-                  agregar(id_proyecto,nombre_proyecto);
+				$( "#proyecto_id" ).val( ui.item.label );
+				  $("#id_proyecto").val(ui.item.value);
                   return false;
                }
             })
@@ -109,13 +87,7 @@
 					<h5 class="form-header"> Añadir Registro </h5>
 					<div class="form-desc"> Describe todos los datos del Movimiento. </div>
 					<hr>
-					<div class="row">
-						<div class="col-sm-2">
-							<div class="form-group">
-								<label for="">¿INGRESO?</label>
-								<input class="form-control" type="checkbox" name="ingreso" value="1" >
-							</div>
-						</div>
+					<div class="row">						
 						<div class="col-sm-3">
 						<div class="form-group">
 								<label for="">Moneda</label>
@@ -136,11 +108,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label for="">Total</label><input type="hidden" autocomplete="off" class="form-control" placeholder="Total"  name="total" id="total"><input autocomplete="off" readonly="" class="form-control" placeholder="Total" type="text" name="total2" id="total2">
-							</div>
-						</div>
+						
 					</div>
 					<div class="row">						
 						<div class="col-sm-6">
@@ -154,15 +122,22 @@
 									<?php } ?>
 								</select>
 							</div>						
-						</div>		
+						</div>	
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="">Banco</label>
+								<label for="">Proyecto</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<select class="form-control select2" name="id_banco" id="id_banco">									
-								</select>
-							</div>						
-						</div>					
+								<input id = "proyecto_id"class="form-control"> 
+								<input type="hidden"name="id_proyecto" id="id_proyecto">
+								<!--
+								<<select class="form-control select2" name="id_proyecto" id="id_proyecto">
+									<option value="0">--Seleccione proyecto-</option>
+									<?php foreach ($proyectos as $proyecto) { ?>							
+									<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo $proyecto->nombre_proyecto;?></option>
+									<?php } ?>
+								</select>-->
+							</div>		
+						</div>										
 					</div>	
 					<div class="row">
 						<div class="col-sm-6">
@@ -177,22 +152,7 @@
 									<?php } ?>
 								</select>-->
 							</div>		
-						</div>
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label for="">Beneficiario</label>
-								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<input id = "beneficiario_id"class="form-control"><input type="hidden"name="id_beneficiario" id="id_beneficiario">
-								<!--<select class="form-control select2" name="id_responsable" id="id_responsable">
-									<option value="0">--Seleccione a responsable--</option>
-									<?php foreach ($personas as $persona) { ?>							
-									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
-									<?php } ?>
-								</select>-->
-							</div>		
 						</div>	
-					</div>
-					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="">Persona que Autoriza</label>
@@ -205,19 +165,21 @@
 									<?php } ?>
 								</select>-->
 							</div>		
-						</div>	
-						<div class="col-sm-6">
+						</div>						
+					</div>
+					<div class="row">
+						
+						
+						<div class="col-sm-2">
 							<div class="form-group">
-								<label for="">Proyecto</label>
-								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<input id = "proyecto_id"class="form-control"> <!--
-								<<select class="form-control select2" name="id_proyecto" id="id_proyecto">
-									<option value="0">--Seleccione proyecto-</option>
-									<?php foreach ($proyectos as $proyecto) { ?>							
-									<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo $proyecto->nombre_proyecto;?></option>
-									<?php } ?>
-								</select>-->
-							</div>		
+							<label for="">&nbsp;</label>
+                            <button id="btn-agregar" type="button" class="btn btn-success btn-flat btn-block"><span class="fa fa-plus"></span> Agregar</button></div>
+						</div>
+						<div class="col-sm-7"></div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="">Total</label><input type="text" readonly="" class="form-control" name="total" id="total" value="" placeholder="Total">
+							</div>
 						</div>
 															
 					</div>		
@@ -226,13 +188,15 @@
 							<table id="dataTable12" style="display: block;overflow-x: auto;" class="dataTable table table-bordered table table-hover table-reponsive" width="100px">
 								<thead>
 									<tr>               
-										<th>Fecha</th>
-										<th>Periodo</th>
-										<th>Proyecto</th>
-										<th>Lugar</th>
-										<th>Monto</th>
-										<th>Detalle</th>   
-										<th>Clasificación</th> 
+										<th>Desde:</th>
+										<th>Hasta:</th>
+										<th>DNI</th>
+										<th>Appellidos y Nombres</th>
+										<th>Descripcion</th> 
+										<th>Días</th>
+										<th>Precio</th>
+										<th>Total</th>   
+										
 										<th></th>            
 									</tr>
 								</thead>
@@ -261,7 +225,7 @@ $(document).ready(function() {
 			var formData = new FormData($(this)[0]);
 			$.ajax({
 				
-				url: "<?php echo base_url('caja/caja_add'); ?>",
+				url: "<?php echo base_url('requerimiento/requerimiento_add'); ?>",
 				type: "POST",
 				data: formData,
 				async: true,
@@ -311,129 +275,66 @@ $(document).ready(function() {
 			opensuccess();
 		
 	});
-	$('#id_empresa').on('change', function() {
-		$("#id_banco").prop('disabled', true);
-    //alert( $(this).find(":selected").val() );
-	// Guardamos el select de bancos
-	var bancos = $("#id_banco");
-
-	// Guardamos el select de empresas
-	var empresas = $(this);
-	if($(this).val() != '')
-        {
-            $.ajax({
-                data: { id : empresas.val() },
-                url:   '<?php echo base_url('banco/mostrar_banco_id'); ?>',
-                type:  'POST',
-                dataType: 'json',
-                beforeSend: function () 
-                {
-                    empresas.prop('disabled', true);
-                },
-                success:  function (r) 
-                {
-                    empresas.prop('disabled', false);
-
-                    // Limpiamos el select
-                    bancos.find('option').remove();
-					bancos.append('<option value="">--Seleccione un banco--</option>');
-                    $(r).each(function(i, v){ // indice, valor
-                        bancos.append('<option value="' + v['id_banco'] + '">' + v['banco'] + '</option>');
-                    })
-
-                    bancos.prop('disabled', false);
-                },
-                error: function()
-                {
-                    alert('Ocurrio un error en el servidor ...');
-                    empresas.prop('disabled', false);
-                }
-            });
-        }
-        else
-        {
-            bancos.find('option').remove();
-            bancos.prop('disabled', true);
-        }
-});
-
-$('#id_proyecto').on('change', function() {
-	var proyecto=document.getElementById("id_proyecto");
 	
-  
-    var selectedOption = this.options[proyecto.selectedIndex];
-    var nombre_proyecto=selectedOption.text;
-	var id_proyecto=selectedOption.value;
-    var tbody = $('#dataTable12 tbody'); 
-   var fila_contenido ;
-   //Agregar fila nueva. 
-   
-      var fila_nueva = $('<tr id="filadatos" class="filadatos table">'+
-	  '<td> <input name="fechas[]" type="date"  value=""></td>'+
-	  '<td> <input name="periodos[]" value="" placeholder="Periodo"></td>'+
-	  '<td> <select name="proyectos[]"><option value="'+id_proyecto+'">'+nombre_proyecto+'</option>'+
-      <?php foreach ($proyectos as $proyecto) { ?>							
-									'<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo $proyecto->nombre_proyecto;?></option>'+
-									<?php } ?>'</select></td>'+
-	  '<td> <input name="lugares[]" value="" placeholder="Lugar"></td>'+
-	  '<td> <input autocomplete="off" name="montos[]" type="text" id="monto"><p hidden="hidden"></p></td>'+
-	  '<td> <input autocomplete="off" name="detalles[]" value="" placeholder="Detalle"></td>'+
-	  '<td> <select name="clasificaciones[]"><option>Seleccione una clasificación</option>'+
-'<?php foreach($clasificaciones as $clasificacion){ ?><option value="<?php echo $clasificacion->id_clasificacion; ?>"><?php echo $clasificacion->clasificacion; ?></option><?php } ?></select></td>'+
-	  
-	  '<td> <a href="#" id="borrar" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i> </a></td>'+
-	  '</tr>');
-      fila_nueva.append(fila_contenido); 
-      tbody.append(fila_nueva); 
-
+$('#btn-agregar').on('click', function() {
+	agregar();
 });
+
 
 $(document).on("click","#borrar", function(){
         $(this).closest("tr").remove();
         sumar();
     });
 
+	$(function () {
+    $(document).on('keyup', '#dias', function (event) {
+		$(this).closest("tr").find("td:eq(5)").children("p").text($(this).val());				
+        cantidad = $(this).val();
+        precio = $(this).closest("tr").find("td:eq(6)").text();
+        importe = cantidad * precio;
+        $(this).closest("tr").find("td:eq(7)").children("p").text(importe.toFixed(2));
+		sumar();
+    });
+});
 $(function () {
-    $(document).on('keyup', '#monto', function (event) {
-
-        $(this).closest("tr").find("td:eq(4)").children("p").text($(this).val());
+    $(document).on('keyup', '#precio', function (event) {
+		$(this).closest("tr").find("td:eq(6)").children("p").text($(this).val());
+        precio = $(this).val();
+        cantidad = $(this).closest("tr").find("td:eq(5)").text();
+        importe = cantidad * precio;
+        $(this).closest("tr").find("td:eq(7)").children("p").text(importe.toFixed(2));
 		sumar();
     });
 });
 });
-
-function agregar(id,nombre){
+function sumar(){
+	var total=0;
+	$("#dataTable12 tbody tr").each(function(){
+		total=total + Number($(this).find("td:eq(7)").children("p").text());
+	});
+	$("input[name=total]").val(total);
+}
+function agregar(){
       var tbody = $('#dataTable12 tbody'); 
    var fila_contenido ;
    //Agregar fila nueva. 
    
       var fila_nueva = $('<tr id="filadatos" class="filadatos table">'+
-	  '<td> <input name="fechas[]" type="date"  min="2019-10-25" value="<?php echo date("Y-m-d"); ?>"></td>'+
-	  '<td> <input name="periodos[]" placeholder="Periodo" value="<?php echo date("m-Y"); ?>"></td>'+
-	  '<td> <select name="proyectos[]"><option value="'+id+'">'+nombre+'</option>'+
-      <?php foreach ($proyectos as $proyecto) { ?>							
-									'<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo substr($proyecto->nombre_proyecto,1,30);?></option>'+
-									<?php } ?>'</select></td>'+
-	  '<td> <input name="lugares[]" value="" placeholder="Lugar"></td>'+
-	  '<td> <input autocomplete="off" name="montos[]" type="text" id="monto"><p hidden="hidden"></p></td>'+
-	  '<td> <input autocomplete="off" name="detalles[]" value="" placeholder="Detalle"></td>'+
-	  '<td> <select name="clasificaciones[]"><option>Seleccione una clasificación</option>'+
-	  '<?php foreach($clasificaciones as $clasificacion){ ?><option value="<?php echo $clasificacion->id_clasificacion; ?>"><?php echo $clasificacion->clasificacion; ?></option><?php } ?></select></td>'+
-	    
+	  '<td> <input name="fecha_inicio[]" type="date"  min="2019-10-25" value="<?php echo date("Y-m-d"); ?>"></td>'+
+	  '<td> <input name="fecha_fin[]" type="date"  min="2019-10-25" value="<?php echo date("Y-m-d"); ?>"></td>'+
+	  '<td> <input name="dni[]" placeholder="dni" value=""></td>'+
+	  '<td> <input name="datos[]" placeholder="Datos de trabajador" value=""></td>'+
+	  '<td> <input name="descripcion[]" placeholder="Descripcion" value=""></td>'+
+	  '<td> <input id="dias" name="dias[]" value="0" placeholder="Días"><p hidden="hidden"></p></td>'+
+	  '<td> <input id="precio" name="precio[]" value="0" placeholder="Precio"><p hidden="hidden"></p></td>'+
+	  '<td> <p></p></td>'+  
 	  '<td> <a href="#" id="borrar" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i> </a></td>'+
 	  '</tr>');
       fila_nueva.append(fila_contenido); 
       tbody.append(fila_nueva); 
     }
 
-function sumar(){
-	var total=0;
-	$("#dataTable12 tbody tr").each(function(){
-		total=total + Number($(this).find("td:eq(4)").children("p").text());
-	});
-	$("input[name=total]").val(total);
-	$("input[name=total2]").val(total);
-}
+
  function opensuccess(){
 	swal(
 			'Correcto',

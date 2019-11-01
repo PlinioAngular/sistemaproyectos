@@ -34,6 +34,7 @@
 
         reader.readAsBinaryString(file);
       };
+	  
   };
 
   function handleFileSelect(evt) {
@@ -41,10 +42,7 @@
     var files = evt.target.files; // FileList object
     var xl2json = new ExcelToJSON();
     xl2json.parseExcel(files[0]);
-  }
-
-
- 
+  } 
 </script>
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -60,7 +58,7 @@
 					<hr>
 					<div class="row">						
 						<div class="col-sm-6">
-							<div class="form-group">
+							<div class="form-group"><input type="hidden" value="<?php echo $datos->id_persona; ?>" name="id_responsable">
 								<label for="">Responsable</label>
 								<input type="text" readonly="" class="form-control" value="<?php echo $datos->apellido_paterno.' '.$datos->apellido_materno.' '.$datos->nombres; ?>">
 							</div>
@@ -88,7 +86,7 @@
 						</div>	
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="">Proyecto</label>
+								<label for="">Proyecto</label><input type="hidden" value="<?php echo $datos->id_proyecto; ?>" name="id_proyecto">
 								<input type="text" readonly="" class="form-control" value="<?php echo $datos->nombre_proyecto; ?>">
 							</div>
 						</div>															
@@ -102,7 +100,7 @@
 						</div>	
 						<div class="col-sm-2">
 							<div class="form-group">
-								<label for="">Gasto Total</label>
+								<label for="">Gasto Total</label><input type="hidden" value="<?php echo $datos->moneda; ?>" name="moneda">
 								<input type="text" readonly="" class="form-control" name="total" id="total" value="" placeholder="Total">
 							</div>
 						</div>	
@@ -268,7 +266,7 @@ $('#btn-agregar').on('click', function() {
 	  '<td> <input name="numero[]" value="0" placeholder="Número"></td>'+
 	  '<td> <select name="proyectos[]"><option value=""></option>'+
       <?php foreach ($proyectos as $proyecto) { ?>							
-									'<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo $proyecto->nombre_proyecto;?></option>'+
+									'<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo substr($proyecto->nombre_proyecto,1,50);?></option>'+
 									<?php } ?>'</select></td>'+
 		'<td> <select name="clasificaciones[]"><option>Seleccione una clasificación</option>'+
 		'<?php foreach($clasificaciones as $clasificacion){ ?><option value="<?php echo $clasificacion->id_clasificacion; ?>"><?php echo $clasificacion->clasificacion; ?></option><?php } ?></select></td>'+

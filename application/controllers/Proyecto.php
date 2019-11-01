@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Inicio extends CI_Controller {
+class Proyecto extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -24,31 +24,22 @@ class Inicio extends CI_Controller {
 		if (!$this->session->userdata("id")) {
 			redirect(base_url());
 		}
-		$this->load->model(array('principal/principal_model','rendicion/rendicion_model'));
+		$this->load->model(array('proyecto/proyecto_model','rendicion/rendicion_model'));
  		$this->load->library(array('session','form_validation'));
  		$this->load->helper(array('url','form'));
  		$this->load->database('default');
     }
 	public function index()
 	{
-		$datos["egresos"]=$this->principal_model->egresos();
-		$datos["rendidos"]=$this->principal_model->rendidos();
-		$datos["por_rendir"]=$this->principal_model->por_rendir();
-		$datos["web"]=$this->principal_model->web();		
-		$datos["egreso_soles"]=$this->principal_model->egreso_soles();
-		$datos["egreso_dolares"]=$this->principal_model->egreso_dolares();
-		$datos["ingreso_soles"]=$this->principal_model->ingreso_soles();
-		$datos["ingreso_dolares"]=$this->principal_model->ingreso_dolares();
-		if($this->session->userdata('rol')=='RENDICION'){
-			$datos['notificaciones']=$this->rendicion_model->rendiciones_web();
-		}
+		$datos["datos"]=$this->proyecto_model->mostrar();
+		$datos["notificaciones"]=$this->rendicion_model->rendiciones_web();
 		$this->load->view('layout/header',$datos);
-		$this->load->view('principal/principal',$datos);
+		$this->load->view('proyecto/listado');
 		$this->load->view('layout/footer');
 	}
 
 	public function ajax(){ 
-		$data= $this->principal_model->mostrar();
+		$data= $this->proyecto_model->mostrar();
 		$pasar=array();
 		$i=0;
 		foreach($data as $dato){
@@ -61,7 +52,7 @@ class Inicio extends CI_Controller {
 			$pasar[$i][6]=$dato->empresa;
 			$pasar[$i][7]='<button aria-expanded="false" aria-haspopup="true" class="btn btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Opción</button>
 			<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
-			<a class="dropdown-item" href="'. base_url('inicio/edit/').$dato->id_proyecto .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
+			<a class="dropdown-item" href="'. base_url('proyecto/edit/').$dato->id_proyecto .'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="#">Eliminar</a>
 			</div>';
@@ -89,34 +80,36 @@ $options = array('http' => array(
 $context = stream_context_create($options);
 
 // Enviamos la solicitud
-$response = file_get_contents('http://172.16.10.50/restfulcc/api/v1/listadocc', false, $context);
+$response = file_get_contents('http://172.16.10.20/restfulcc/api/v1/listadocc', false, $context);
   //$url ='http://localhost/prueba_api/index.php/restserver/test/format/json';
   //$json = file_get_contents($url);
-  var_dump($response);
+  echo json_encode($response);
   
 }
 
 	public function registrar()
 	{
-		$data['clientes'] = $this->principal_model->mostrar_cliente();
-		$data['gerencias'] = $this->principal_model->mostrar_gerencia();
-		$data['areas'] = $this->principal_model->mostrar_area();
-		$data['sub_areas'] = $this->principal_model->mostrar_sub_area();
-		$data['empresas'] = $this->principal_model->mostrar_empresa();
-		$this->load->view('layout/header');
-		$this->load->view('principal/registrar',$data);
+		$datos["notificaciones"]=$this->rendicion_model->rendiciones_web();
+		$data['clientes'] = $this->proyecto_model->mostrar_cliente();
+		$data['gerencias'] = $this->proyecto_model->mostrar_gerencia();
+		$data['areas'] = $this->proyecto_model->mostrar_area();
+		$data['sub_areas'] = $this->proyecto_model->mostrar_sub_area();
+		$data['empresas'] = $this->proyecto_model->mostrar_empresa();
+		$this->load->view('layout/header',$datos);
+		$this->load->view('proyecto/registrar',$data);
 		$this->load->view('layout/footer');
 	}
 	public function edit($id=0)
 	{
-		$data['clientes'] = $this->principal_model->mostrar_cliente();
-		$data['gerencias'] = $this->principal_model->mostrar_gerencia();
-		$data['areas'] = $this->principal_model->mostrar_area();
-		$data['sub_areas'] = $this->principal_model->mostrar_sub_area();
-		$data['empresas'] = $this->principal_model->mostrar_empresa();
-		$data['proyecto'] = $this->principal_model->mostrar_por_id($id);
-		$this->load->view('layout/header');
-		$this->load->view('principal/editar',$data);
+		$datos["notificaciones"]=$this->rendicion_model->rendiciones_web();
+		$data['clientes'] = $this->proyecto_model->mostrar_cliente();
+		$data['gerencias'] = $this->proyecto_model->mostrar_gerencia();
+		$data['areas'] = $this->proyecto_model->mostrar_area();
+		$data['sub_areas'] = $this->proyecto_model->mostrar_sub_area();
+		$data['empresas'] = $this->proyecto_model->mostrar_empresa();
+		$data['proyecto'] = $this->proyecto_model->mostrar_por_id($id);
+		$this->load->view('layout/header',$datos);
+		$this->load->view('proyecto/editar',$data);
 		$this->load->view('layout/footer');
 	}
 
@@ -131,7 +124,7 @@ $response = file_get_contents('http://172.16.10.50/restfulcc/api/v1/listadocc', 
 		}
 		else
 		{
-			if($qid = $this->principal_model->proyecto_add())
+			if($qid = $this->proyecto_model->proyecto_add())
 			{
 				echo 'si_'.$qid;
 			}
@@ -152,7 +145,7 @@ $response = file_get_contents('http://172.16.10.50/restfulcc/api/v1/listadocc', 
 		}
 		else
 		{
-			if($qid = $this->principal_model->proyecto_edit())
+			if($qid = $this->proyecto_model->proyecto_edit())
 			{
 				echo 'si_'.$qid;
 			}

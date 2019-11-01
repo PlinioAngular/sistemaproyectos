@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"><?php echo $this->session->userdata('nombre'); ?> <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3"><?php echo $this->session->userdata('nombre'); ?> </div>
       </a>
 
       <!-- Divider -->
@@ -62,13 +62,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         MODULOS
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link" href="<?php echo base_url('proyecto')?>">
+          <i class="fas fa-puzzle-piece"></i>
+          <span>Proyectos</span></a>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item dmenu">
+        <a class="nav-link collapsed despliega" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Mantenimiento</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  id="despliega">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Mantenimientos</h6>
             <a class="collapse-item" href="<?php echo base_url()?>cliente">Cliente</a>
@@ -117,6 +123,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </li>
 
       <?php } ?>
+
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequerimiento" aria-expanded="true" aria-controls="collapseRequerimiento">
+          <i class=" 	fas fa-box-open"></i>
+          <span>Requerimientos</span>
+        </a>
+        <div id="collapseRequerimiento" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Mantenimientos</h6>
+            <a class="collapse-item" href="<?php echo base_url()?>requerimiento">Mis Requerimientos</a>
+            <a class="collapse-item" href="<?php echo base_url()?>caja">Nuevo Requerimiento</a>
+            <a class="collapse-item" href="<?php echo base_url()?>caja/registrar">Por Aprobar</a>
+            <a class="collapse-item" href="<?php echo base_url()?>caja/registrar">Por Atender</a>
+          </div>
+        </div>
+      </li>
 
       <!-- Nav Item - Utilities Collapse Menu 
       <li class="nav-item">
@@ -252,7 +275,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   Notificaciones
                 </h6>
                 <?php foreach($notificaciones as $notificacion) {  ?>
-                <a class="dropdown-item d-flex align-items-center" href="<?php echo base_url('rendicion/web_detalle/').$notificacion->id_persona; ?>">
+                <a class="dropdown-item d-flex align-items-center" href="<?php echo base_url('rendicion/web_detalle/').md5($notificacion->id_persona); ?>">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
@@ -269,8 +292,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a class="dropdown-item text-center small text-gray-500" href="<?php echo base_url('rendicion/web'); ?>">Mostrar Todo</a>
               </div>
             </li>
-            <?php } ?>
-
+            <?php }  if(1==2) { ?>
+            
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -326,6 +349,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
+            <?php } ?>
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -362,3 +386,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </nav>
 	</div>
 </html>
+<script>
+$(".dmenu").hover(function(){
+$(".despliega").trigger('click')
+});
+</script>

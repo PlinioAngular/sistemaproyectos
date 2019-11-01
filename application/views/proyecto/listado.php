@@ -1,16 +1,19 @@
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Listado de Egresos Rendidos-No rendidos</h1>
-    <p class="mb-4">La presente tabla muestra los Egresos - Rendidos y  no Rendidos - de un Personal seleccionado con opción a rendir o editar.<a target="_blank" href="https://datatables.net"></a>.</p>
+    <h1 class="h3 mb-2 text-gray-800">Proyectos</h1>
+    <p class="mb-4">La presente tabla muestra los proyectos que se ejecutan dentro de <a target="_blank" href="http://sistemas.sattelital.com.pe/">Grupo Satelital</a> con opción a editar y dar de baja.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Listado de Egresos rendidos y no rendidos</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Listado de Proyectos</h6>
             </div>
+            <hr>
             <div class="row">
               <div class="col col-sm-10"></div>
-               
+                <div class="col col-sm-2">
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>proyecto/registrar">Nuevo Proyecto</a>
+                </div>
                 </div>
             <div class="card-body">
               
@@ -18,26 +21,31 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Cod. Egreso</th>
-                      <th>Responsable</th>                        
-                      <th>Egreso</th> 
-                      <th>Rendido</th> 
-                      <th>Saldo</th> 
-                      <th>Detalle</th>                   
+                      <th>Nombre</th>
+                      <th>Código</th>
+                      <th>Cliente</th>
+                      <th>Gerencia</th>
+                      <th>Área</th>
+                      <th>Sub Área</th>
+                      <th>Empresa</th>   
+                      <th>Acciones</th>                    
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Cod. Egreso</th>
-                      <th>Responsable</th>                        
-                      <th>Egreso</th> 
-                      <th>Rendido</th> 
-                      <th>Saldo</th> 
-                      <th>Detalle</th>   
+                      <th>Nombre</th>
+                      <th>Código</th>
+                      <th>Cliente</th>
+                      <th>Gerencia</th>
+                      <th>Área</th>
+                      <th>Sub Área</th>
+                      <th>Empresa</th>   
+                      <th>Acciones</th>   
+                      
                     </tr>
                   </tfoot>
                   <tbody>
-                             
+                                
                   </tbody>
                 </table>
               </div>
@@ -49,12 +57,10 @@
 </div>
 <script>
 $(document).ready(function () {
-  var id='<?php echo $id; ?>';
  $('#dataTable').DataTable({
          "ajax":{
-           "data":{'id':id},
            "type":"post",
-           "url":"<?php echo base_url('rendicion/ajax_rendidos_detalle'); ?> "
+           "url":"<?php echo base_url('proyecto/ajax'); ?> "
            },
          "language": {
              "lengthMenu": "Mostrar _MENU_ registros por pagina",

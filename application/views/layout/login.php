@@ -45,6 +45,7 @@
               </div>
             <?php endif; ?>
                   <form action="<?php echo base_url('Auth/login'); ?>" class="user" method="post">
+                  <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
@@ -68,12 +69,13 @@
                     </a>-->
                   </form>
                   <hr>
+                  <!--
                   <div class="text-center">
                     <a class="small" href="forgot-password.html">Olvidó Contraseña?</a>
                   </div>
                   <div class="text-center">
                     <a class="small" href="register.html">Create an Account!</a>
-                  </div>
+                  </div>-->
                 </div>
               </div>
             </div>

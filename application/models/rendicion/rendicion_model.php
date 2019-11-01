@@ -42,10 +42,10 @@ class Rendicion_model extends CI_Model {
 
  public function mostrar_persona_detalle($id)
  {
-    $this->db->select('dc.id_detalle_caja,r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto as total');
+    $this->db->select('dc.id_detalle_caja,r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto as total,ca.moneda');
     $this->db->where('ca.egreso !=',0);
     $this->db->where('dc.estado',0);
-    $this->db->where('ca.id_responsable',$id);
+    $this->db->where('md5(ca.id_responsable)',$id);
     $this->db->from("tbl_detalle_caja as dc");
     $this->db->join("tbl_caja as ca ","dc.id_caja=ca.id_caja");
     $this->db->join("tbl_persona as r ","ca.id_responsable=r.id_persona");
@@ -63,9 +63,9 @@ class Rendicion_model extends CI_Model {
  public function mostrar_detalle_id($id)
  {
    $this->db->select('au.id_persona as id_auto,au.apellido_paterno as ap_aut,au.apellido_materno as am_aut,au.nombres as nom_aut,dc.id_detalle_caja,
-   r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto,dc.detalle,p.nombre_proyecto,ren.gasto,ren.id_rendicion');
+   r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto,dc.detalle,p.nombre_proyecto,ren.gasto,ren.id_rendicion,ca.moneda,p.id_proyecto');
    //$this->db->where('ca.egreso !=',0);
-   $this->db->where('dc.id_detalle_caja',$id);
+   $this->db->where('md5(dc.id_detalle_caja)',$id);
    $this->db->from("tbl_detalle_caja as dc");
    $this->db->join("tbl_caja as ca ","dc.id_caja=ca.id_caja");
    $this->db->join("tbl_persona as r ","ca.id_responsable=r.id_persona");
@@ -81,7 +81,7 @@ class Rendicion_model extends CI_Model {
    p.id_proyecto,p.nombre_proyecto,cl.id_clasificacion,cl.clasificacion,t.id_tipo_actividad,t.tipo_actividad,dr.descripcion,dr.cantidad,
    dr.precio');
     $this->db->from("tbl_detalle_rendicion as dr");
-    $this->db->where('dc.id_detalle_caja',$id);
+    $this->db->where('md5(dc.id_detalle_caja)',$id);
     $this->db->join("tbl_proyecto as p ","p.id_proyecto=dr.id_proyecto","left");
     $this->db->join("tbl_clasificacion as cl ","cl.id_clasificacion=dr.id_clasificacion","left");
     $this->db->join("tbl_tipo_actividad as t ","t.id_tipo_actividad=dr.id_tipo_actividad","left");
@@ -111,7 +111,7 @@ class Rendicion_model extends CI_Model {
     $this->db->select('dc.id_detalle_caja,dc.estado,r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto as egreso, ren.gasto as rendido, 
     (dc.monto-ren.gasto) as saldo,ren.id_rendicion');
     $this->db->where('ca.egreso !=',0);
-    $this->db->where('ca.id_responsable',$id);
+    $this->db->where('md5(ca.id_responsable)',$id);
     $this->db->from("tbl_detalle_caja as dc");
     $this->db->join("tbl_caja as ca ","dc.id_caja=ca.id_caja");
     $this->db->join("tbl_persona as r ","ca.id_responsable=r.id_persona");
@@ -126,7 +126,7 @@ class Rendicion_model extends CI_Model {
    return $this->db->get()->row()->bloque;
  }
 
- function rendicion_add(){
+ function rendicion_add($bloque){
     $fecha=$this->input->post('fechas');
     $periodo=$this->input->post('periodos');
     $ruc=$this->input->post('ruc');
@@ -143,7 +143,7 @@ class Rendicion_model extends CI_Model {
       'id_autoriza' => $this->input->post('id_autoriza'),
       'id_registra' =>$this->session->userdata('id'),
       'gasto' => $this->input->post('total'),
-      'bloque' => $this->setBloque(),
+      'bloque' => $bloque,
       'id_detalle_caja' => $this->input->post('id_detalle_caja'),
       'fecha_registro' => date("Y/m/d")
    );
@@ -306,7 +306,7 @@ function eliminar_detalle(){
    return $this->db->delete('tbl_detalle_rendicion', array('id_detalle_rendicion' => $this->input->post('id_eliminar')));
 }
 
-function cambio_estado($id_detalle){
+function cambio_estado($id_detalle){ 
    
    $tratamiento=$this->input->post('tratamiento');
    
@@ -369,7 +369,6 @@ function rendicion_edit(){
       'id_autoriza' => $this->input->post('id_autoriza'),
       'id_registra' =>$this->session->userdata('id'),
       'gasto' => $this->input->post('total'),
-      'bloque' => 1,
       'id_detalle_caja' => $this->input->post('id_detalle_caja'),
       'fecha_registro' => date("Y/m/d")
    );
@@ -439,10 +438,10 @@ function rendicion_edit(){
  	return $query->result();
    }
    function rendiciones_web_detalle($id){
-      $this->db->select('if(ren.id_registra=6,"SI",if(ren.id_registra=1072,"SI","NO")) as vb,r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto as egreso, ren.gasto as rendido, 
-    (dc.monto-ren.gasto) as saldo,ren.fecha_registro,dc.id_detalle_caja,ren.id_rendicion');
+      $this->db->select('if(ren.id_registra=6,"SI",if(ren.id_registra=441,"SI","NO")) as vb,r.id_persona,r.apellido_paterno,r.apellido_materno,r.nombres, dc.monto as egreso, ren.gasto as rendido, 
+    (dc.monto-ren.gasto) as saldo,ren.fecha_registro,dc.id_detalle_caja,ren.id_rendicion,dc.id_proyecto,ca.moneda,ren.id_autoriza');
     $this->db->where('dc.estado',2);
-    $this->db->where('r.id_persona',$id);
+    $this->db->where('md5(r.id_persona)',$id);
     $this->db->from("tbl_detalle_caja as dc");
     $this->db->join("tbl_caja as ca ","dc.id_caja=ca.id_caja");
     $this->db->join("tbl_persona as r ","ca.id_responsable=r.id_persona");
@@ -450,4 +449,65 @@ function rendicion_edit(){
     $query=$this->db->get();      
  	return $query->result();
    }
+
+   function caja_add($ingreso,$bloque,$proyecto){
+      
+      $movimiento='egreso';
+      if($ingreso==1){
+         $movimiento='ingreso';
+      }
+     $detalle = array(
+        'id_autoriza' => $this->input->post('id_autoriza'),
+        'id_registra' =>$this->session->userdata('id'),
+        'id_beneficiario' => $this->input->post('id_responsable'),
+        'id_responsable' => $this->input->post('id_responsable'),
+        'id_banco' => 12,
+        $movimiento => $this->input->post('saldo'),
+        'fecha_registro' => date("Y/m/d"),
+        'moneda' => $this->input->post('moneda'),
+        'tipo' => "INTERNO",
+     );
+  
+     if(!$this->db->table_exists('tbl_caja')){ //VALIDA SI EXISTE LA TABLA
+        return false;
+     }
+     
+     $insert_fun = $this->db->insert('tbl_caja',$detalle);
+     $insert_id = $this->db->insert_id();
+     if($insert_id){
+        $insert_id1=$this->add_detalle_caja($insert_id,$bloque,$proyecto);
+     }else { return false;}
+     return $insert_id;
+  
+  
+  }
+  
+  function add_detalle_caja($id_caja,$bloque,$proyecto){
+     $insert_id=0;
+     
+     $data = array(
+        'id_caja' => $id_caja,
+        'fecha' => date('Y-m-d'),
+        'periodo' => date('m-Y'),
+        'id_proyecto' => $proyecto,
+        'id_cliente' => 1,
+        'id_gerencia' => 1,
+        'id_area' => 1,
+        'id_sub_area' => 1,
+        'id_tipo_actividad' => 391,
+        'monto' => $this->input->post('saldo'),
+        'lugar' => 'HUANCAYO',
+        'detalle' => 'SALDO POR RENDICION POR EL BLOQUE '.$bloque,
+        'id_clasificacion' => 49
+     );
+  
+     if(!$this->db->table_exists('tbl_detalle_caja')){ //VALIDA SI EXISTE LA TABLA
+        return false;
+     }
+     
+     $insert_fun = $this->db->insert('tbl_detalle_caja',$data);
+     $insert_id = $this->db->insert_id();   
+   return $insert_id;
+  
+  }
 }

@@ -46,7 +46,7 @@ class Area extends CI_Controller {
 			$pasar[$i][1]=$area->area;
 			$pasar[$i][2]='<button aria-expanded="false" aria-haspopup="true" class="btn btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Opción</button>
 			<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
-			<a class="dropdown-item" href="'.base_url().'area/edit/'.$area->id_area.'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
+			<a class="dropdown-item" href="'.base_url().'area/edit/'.md5($area->id_area).'" >Editar</a><a class="dropdown-item" href="#">Dar de Baja</a>
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="#">Eliminar</a>
 			</div>';
@@ -63,12 +63,18 @@ class Area extends CI_Controller {
 		$this->load->view('layout/footer');
 	}
 	public function edit($id=0)
-	{
-		
+	{		
 		$data['area'] = $this->area_model->mostrar_por_id($id);
-		$this->load->view('layout/header');
-		$this->load->view('area/editar',$data);
-		$this->load->view('layout/footer');
+		if($data['area']!=null){
+			$this->load->view('layout/header');
+			$this->load->view('area/editar',$data);
+			$this->load->view('layout/footer');
+		}else{
+			$this->load->view('layout/header');
+			$this->load->view('mensajes/invalido');
+			$this->load->view('layout/footer');
+		}
+		
 	}
 
 	function area_add(){

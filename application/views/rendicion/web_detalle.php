@@ -7,7 +7,7 @@
     <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Listado de rendiciones Web a detalle</h6>
-            </div>
+            </div><hr>
             <form id="add_web" name="add_web" accept-charset="utf-8" enctype="multipart/form-data" method="post">
             <div class="row">
               <div class="col-sm-2">
@@ -22,11 +22,17 @@
 										<option value="3">REPOSICION</option>
 										<option value="5">VUELTO</option>
 										<option value="7">DEVOLUCION</option>
-                    <option value="6">DESCUENTO</option>
+                    					<option value="6">DESCUENTO</option>
 										<option value="4">SALDO POR RENDIR</option>
 								  </select>
 							  </div>
 						  </div>	
+			 
+			 <div class="col-sm-2">
+				<div class="form-group">
+					<input type="text" readonly="" class="form-control" name="saldo" id="saldo" value="" placeholder="Saldo">
+				</div>
+			 </div>	
               <div class="col col-sm-10"></div>
                
               </div>
@@ -41,7 +47,8 @@
                       <th>Egreso</th> 
                       <th>Rendido</th> 
                       <th>Saldo</th> 
-                      <th>Detalle</th>                   
+					  <th>Moneda</th> 
+                      <th>Revisar</th>                   
                     </tr>
                   </thead>
                   <tfoot>
@@ -51,11 +58,27 @@
                       <th>Egreso</th> 
                       <th>Rendido</th> 
                       <th>Saldo</th> 
-                      <th>Detalle</th>   
+					  <th>Moneda</th> 
+                      <th>Revisar</th>   
                     </tr>
                   </tfoot>
                   <tbody>
-                               
+				  <?php foreach($data as $dato) { ?>
+				  <tr>
+				  	<?php if($dato->vb=="SI") { ?>
+					<td> <input type="hidden" name="proyecto[]" value="<?php echo $dato->id_proyecto; ?>"><?php echo $dato->vb; ?><input type="hidden" name="vb[]" value="<?php echo $dato->vb; ?>"><input type="hidden" name="id_detalle_caja[]" value="<?php echo $dato->id_detalle_caja; ?>"><input type="hidden"  name="id_rendicion[]" value="<?php echo $dato->id_rendicion; ?>"></td>
+					<input type="hidden" name="id_responsable" value="<?php echo $dato->id_persona; ?>"><input type="hidden" name="moneda" value="<?php echo $dato->moneda; ?>"><input type="hidden" name="id_autoriza" value="<?php echo $dato->id_autoriza; ?>">
+					<?php } else { ?>
+					<td><?php echo $dato->vb; } ?></td>						
+					<td><?php echo $dato->apellido_paterno.' '.$dato->apellido_materno.' '.$dato->nombres; ?></td>
+					<td><?php echo $dato->egreso; ?></td>			
+					<td><?php echo '<p>'.$dato->rendido.'</p>'; ?></td>			
+					<td><?php if($dato->vb=="SI"){ echo '<p>'.$dato->saldo.'</p>'; }else{echo $dato->saldo; } ?></td>
+					<td><?php echo $dato->moneda; ?></td>		
+					<td><a href="<?php echo  base_url('rendicion/editar/').md5($dato->id_detalle_caja); ?>" class="btn btn-info btn-circle btn-sm">
+						<i class="fas fa-edit"></i></td>
+				</tr>
+					<?php } ?>                               
                   </tbody>
                 </table>
               </div>              
@@ -67,14 +90,9 @@
 </div>
 </div>
 <script>
-$(document).ready(function () {
-  var id=<?php echo $id; ?>;
+$(document).ready(function () {	
  $('#dataTable').DataTable({
-         "ajax":{
-           "data":{'id':id},
-           "type":"post",
-           "url":"<?php echo base_url('rendicion/ajax_web_detalle'); ?> "
-           },
+        
          "language": {
              "lengthMenu": "Mostrar _MENU_ registros por pagina",
              "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -91,6 +109,7 @@ $(document).ready(function () {
              },
          }
      });
+	 sumar();
      $("form[name='add_web']").submit(function(e) {
 			var formData = new FormData($(this)[0]);
 			$.ajax({
@@ -142,10 +161,16 @@ $(document).ready(function () {
 				processData: false
 			});
 			e.preventDefault();
-			opensuccess();
-		
+			opensuccess();		
 	});
  });
+ function sumar(){
+	var total=0.00;
+	$("#dataTable tbody tr").each(function(){
+		total+= Number($(this).find("td:eq(4)").children("p").text());
+	});
+	$("input[name=saldo]").val(total);
+}
  function opensuccess(){
 	swal(
 			'Correcto',

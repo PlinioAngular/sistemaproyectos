@@ -28,6 +28,7 @@
                       <th>Suma</th>
                       <th>Responsable</th>                        
                       <th>Total</th> 
+                      <th>Moneda</th> 
                       <th>Rendir</th>                   
                     </tr>
                   </thead>
@@ -36,6 +37,7 @@
                       <th>Suma</th>
                       <th>Responsable</th>                        
                       <th>Total</th> 
+                      <th>Moneda</th> 
                       <th>Rendir</th>    
                     </tr>
                   </tfoot>
@@ -53,7 +55,7 @@
 </div>
 <script>
 $(document).ready(function () {
-  var id=<?php echo $id; ?>;
+  var id='<?php echo $id; ?>';
  $('#dataTable').DataTable({
          "ajax":{
            "data":{'id':id},
