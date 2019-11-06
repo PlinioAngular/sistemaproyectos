@@ -6,7 +6,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Lsitado de Egresos Totales por cada Personal</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Listado de Egresos Totales por cada Personal</h6>
             </div>
             <div class="row">
               <div class="col col-sm-10"></div>

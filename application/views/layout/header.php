@@ -90,6 +90,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
         </div>
       </li>
+
+      <?php if($this->session->userdata('rol')=="CAJA" || $this->session->userdata('rol')=="ADMINISTRADOR" ) { ?>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContabilidad" aria-expanded="true" aria-controls="collapseContabilidad">
+          <i class="far fa-newspaper"></i>
+          <span>Contabilidad</span>
+        </a>
+        <div id="collapseContabilidad" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Mantenimientos</h6>
+            <a class="collapse-item" href="<?php echo base_url()?>contabilidad">Compra Ventas</a>
+            <a class="collapse-item" href="<?php echo base_url()?>contabilidad/caja_banco">Caja y Bancos</a>
+          </div>
+        </div>
+      </li>
+      <?php } ?>
+
       <?php if($this->session->userdata('rol')=="CAJA" || $this->session->userdata('rol')=="ADMINISTRADOR" ) { ?>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCaja" aria-expanded="true" aria-controls="collapseCaja">
@@ -109,7 +126,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <?php if($this->session->userdata('rol')=="RENDICION" || $this->session->userdata('rol')=="ADMINISTRADOR") { ?>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRendicion" aria-expanded="true" aria-controls="collapseRendicion">
-          <i class="far fa-newspaper"></i>
+          <i class="far fa-copy"></i>
           <span>Rendicion</span>
         </a>
         <div id="collapseRendicion" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -134,9 +151,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Mantenimientos</h6>
             <a class="collapse-item" href="<?php echo base_url()?>requerimiento">Mis Requerimientos</a>
-            <a class="collapse-item" href="<?php echo base_url()?>caja">Nuevo Requerimiento</a>
-            <a class="collapse-item" href="<?php echo base_url()?>caja/registrar">Por Aprobar</a>
-            <a class="collapse-item" href="<?php echo base_url()?>caja/registrar">Por Atender</a>
+            <a class="collapse-item" href="<?php echo base_url()?>requerimiento/registrar">Nuevo Requerimiento</a>
+            <a class="collapse-item" href="<?php echo base_url()?>requerimiento/por_aprobar">Por Aprobar</a>
+            <a class="collapse-item" href="<?php echo base_url()?>requerimiento/por_atender">Por Atender</a>
           </div>
         </div>
       </li>
@@ -192,6 +209,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
+
+      <?php if($this->session->userdata('rol')=="RENDICION" || $this->session->userdata('rol')=="ADMINISTRADOR") { ?>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRendicionReporte" aria-expanded="true" aria-controls="collapseRendicionReporte">
+          <i class="far fa-newspaper"></i>
+          <span>Rendicion</span>
+        </a>
+        <div id="collapseRendicionReporte" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Saldos</h6>
+            <a class="collapse-item" href="<?php echo base_url()?>reporterendicion">Vueltos</a>
+            <a class="collapse-item" href="<?php echo base_url()?>reporterendicion/descuento">Descuentos</a>
+            <a class="collapse-item" href="<?php echo base_url()?>reporterendicion/devolucion">Devoluciones</a>
+            <a class="collapse-item" href="<?php echo base_url()?>reporterendicion/reposicion">Reposiciones</a>
+            <a class="collapse-item" href="<?php echo base_url()?>reporterendicion/saldo">Saldos</a>
+            <a class="collapse-item" href="<?php echo base_url()?>reporterendicion/banco">Bancos</a>
+          </div>
+        </div>
+      </li>
+
+      <?php } ?>
 
       <!-- Nav Item - Tables 
       <li class="nav-item">
@@ -261,7 +299,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </li>
 
             <!-- Nav Item - Alerts -->
-            <?php if($this->session->userdata("rol")=="RENDICION"){ ?>
+            <?php if($this->session->userdata("rol")=="RENDICION" || $this->session->userdata("rol")=="CAJA"){ ?>
 
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -282,14 +320,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                   </div>
                   <div>
+                  <?php if($this->session->userdata("rol")=="RENDICION") { ?>
                     <div class="small text-gray-500"><?php echo $notificacion->fecha_registro; ?></div>
                     <span class="font-weight-bold"><?php echo $notificacion->apellido_paterno.' '.$notificacion->apellido_materno.' '.$notificacion->nombres ; ?></span>
+                <?php } else { ?>
+                    <div class="small text-gray-500"><?php echo $notificacion->fecha; ?></div>
+                    <span class="font-weight-bold"><?php echo $notificacion->apellido_paterno.' '.$notificacion->apellido_materno.' '.$notificacion->nombres ; ?></span>
+                  <?php } ?>
                   </div>
                 </a>
-                <?php } ?>
-                
-                
+                <?php } ?>               
+                <?php if($this->session->userdata("rol")=="RENDICION") { ?>
                 <a class="dropdown-item text-center small text-gray-500" href="<?php echo base_url('rendicion/web'); ?>">Mostrar Todo</a>
+                <?php } else { ?>
+                <a class="dropdown-item text-center small text-gray-500" href="<?php echo base_url('requerimiento'); ?>">Mostrar Todo</a>
+                <?php } ?>
               </div>
             </li>
             <?php }  if(1==2) { ?>

@@ -243,7 +243,7 @@ $(document).ready(function() {
 						opensuccess();
 
 						setTimeout(function () {
-						window.location.href="<?php echo base_url('caja' ); ?>/";
+						window.location.href="<?php echo base_url('requerimiento' ); ?>/";
 						}, 1500); //will call the function after 2 secs.
 					}
 					else

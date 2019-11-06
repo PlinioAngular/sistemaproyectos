@@ -28,7 +28,7 @@ class Caja extends CI_Controller {
 				redirect(base_url('rendicion'));
 			}
 		}
-		$this->load->model(array('caja/caja_model','proyecto/proyecto_model','mantenimiento/persona_model'));
+		$this->load->model(array('caja/caja_model','proyecto/proyecto_model','mantenimiento/persona_model','requerimiento/requerimiento_model'));
  		$this->load->library(array('session','form_validation'));
  		$this->load->helper(array('url','form'));
  		$this->load->database('default');
@@ -52,9 +52,9 @@ class Caja extends CI_Controller {
 
 	public function index()
 	{
-		$datos["fecha"]=date("Y/m/d");
-		$this->load->view('layout/header');
-		$this->load->view('caja/listado',$datos);
+		$datos['notificaciones']=$this->requerimiento_model->mostrar(3);
+		$this->load->view('layout/header',$datos);
+		$this->load->view('caja/listado');
 		$this->load->view('layout/footer');
 	}
 	public function ajax(){

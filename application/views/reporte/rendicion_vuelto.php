@@ -22,7 +22,7 @@
                 
               </div>
               <div class="col col-sm-2">
-                <a class="btn btn-primary" href="<?php echo base_url(); ?>caja/registrar">Agregar Registro</a>
+                
               </div>
             </div>
             <div class="card-body">
@@ -31,36 +31,30 @@
                 <table class="table table-bordered" style="display: block;overflow-x: auto;" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>ID</th>
                       <th>Fecha</th>                        
-                      <th>Periodo</th>     
-                      <th>Proyecto</th> 
+                      <th>Periodo</th>  
                       <th>Monto</th> 
+                      <th>Moneda</th> 
+                      <th>Responsable</th>  
                       <th>Detalle</th> 
-                      <th>Banco</th> 
-                      <th>Clasificacion</th> 
-                      <th>Responsable</th>                
-                      <th>Beneficiario</th> 
-                      <th>Autoriza</th> 
-                      <th>Registra</th> 
-                      <th>Acciones</th> 
+                      <th>Proyecto</th>                                     
+                      <th>#Egreso</th> 
+                      <th>ModoRendicion</th> 
+                      <th>Bloque</th> 
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>ID</th>
                       <th>Fecha</th>                        
-                      <th>Periodo</th>     
-                      <th>Proyecto</th> 
+                      <th>Periodo</th>  
                       <th>Monto</th> 
+                      <th>Moneda</th> 
+                      <th>Responsable</th>  
                       <th>Detalle</th> 
-                      <th>Banco</th> 
-                      <th>Clasificacion</th> 
-                      <th>Responsable</th>                
-                      <th>Beneficiario</th> 
-                      <th>Autoriza</th> 
-                      <th>Registra</th>
-                      <th>Acciones</th>    
+                      <th>Proyecto</th>                                     
+                      <th>#Egreso</th> 
+                      <th>ModoRendicion</th> 
+                      <th>Bloque</th>   
                     </tr>
                   </tfoot>
                   <tbody>
@@ -98,8 +92,9 @@ $(document).ready(function () {
      });
  });
  function buscar(){
-    var fecha_inicio=$('#fecha_inicio').val();
-    var fecha_fin=$('#fecha_inicio').val();;
+     var estado='<?php echo $estado; ?>';
+  var fecha_inicio=$('#fecha_inicio').val();
+      var fecha_fin=$('#fecha_inicio').val();;
       var dos_fechas=document.getElementById("dos_fecha").checked
       if(dos_fechas){
         fecha_fin=$('#fecha_fin').val();
@@ -108,9 +103,9 @@ $(document).ready(function () {
     $('#dataTable').dataTable().fnDestroy();
     $('#dataTable').DataTable({
          "ajax":{
-           "data":{'fecha_inicio':fecha_inicio,'fecha_fin':fecha_fin,'dos_fecha':dos_fechas},
+           "data":{'fecha_inicio':fecha_inicio,'fecha_fin':fecha_fin,'dos_fecha':dos_fechas,'estado':estado},
            "type":"post",
-           "url":"<?php echo base_url('caja/ajax'); ?> "
+           "url":"<?php echo base_url('reporterendicion/ajax'); ?> "
            },
          "language": {
              "lengthMenu": "Mostrar _MENU_ registros por pagina",
@@ -133,7 +128,7 @@ $(document).ready(function () {
             extend: 'excelHtml5',
             title: 'Detalle Caja',
             autoFilter: true,
-            sheetName: 'Detalle Caja'
+            sheetName: 'Saldo'
         }
          ]
      });

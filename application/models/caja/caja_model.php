@@ -314,7 +314,5 @@ function detalle_caja_edit($id_detalle,$fecha,$periodo,$proyecto,$monto,$lugar,$
    
    $update_id = $this->input->post('id_detalle_caja');}
    return $update_id;
-
-   
 }
 }

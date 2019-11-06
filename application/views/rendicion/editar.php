@@ -352,7 +352,7 @@ function eliminar(id){
 					else
 					{
 						$('#errormsg').val(msg);
-						openerror();
+						openerror(msg);
 						return false;
 					}
 				},
@@ -438,8 +438,8 @@ function sumar(){
 			'success'
 		);
  }
- function openerror(){
-		var errormsg = $('#errormsg').val();
+ function openerror(msg){
+		var errormsg = msg;
 		swal(
 			'Error',
 			'El registro no pudo llevarse a cabo. \n '+errormsg+'',

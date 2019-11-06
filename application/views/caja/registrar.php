@@ -117,7 +117,7 @@
 							</div>
 						</div>
 						<div class="col-sm-3">
-						<div class="form-group">
+							<div class="form-group">
 								<label for="">Moneda</label>
 								<select class="form-control select2" name="moneda" id="moneda">
 									<option value="0">--Selecciones moneda--</option>

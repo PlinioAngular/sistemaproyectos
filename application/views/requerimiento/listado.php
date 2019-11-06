@@ -11,7 +11,9 @@
             <div class="row">
               <div class="col col-sm-10"></div>
                 <div class="col col-sm-2">
+                <?php if($condicion==1){ ?>
                 <a class="btn btn-primary" href="<?php echo base_url(); ?>requerimiento/registrar">Agregar Requerimiento</a>
+                <?php } ?>
                 </div>
                 </div>
             <div class="card-body">
@@ -55,6 +57,7 @@
 $(document).ready(function () {
  $('#dataTable').DataTable({
          "ajax":{
+           "data":{condicion:'<?php echo $condicion; ?>'},
            "type":"post",
            "url":"<?php echo base_url('requerimiento/ajax'); ?> "
            },
@@ -76,4 +79,36 @@ $(document).ready(function () {
      });
      
  });
+ function estado(id,accion){
+  swal({
+  		title: "¿Está segura(o) de hacer la modificación?",
+  		text: "Al aceptar se cancelará un registro a la rendición!",
+  		icon: "warning",
+  		buttons: true,
+  		dangerMode: true,
+		})
+		.then((willDelete) => {
+  		if (willDelete) {
+        window.location.href="<?php echo base_url('requerimiento/estado' ); ?>/"+id+"/"+accion;		
+  		} else {
+    	swal("El registró no se modificó!");
+  		}
+		});
+ }
+function opensuccess(){
+	swal(
+			'Correcto',
+			'El registro se completo satisfactoriamente.',
+			'success'
+		);
+ }
+ function openerror(){
+		var errormsg = $('#errormsg').val();
+		swal(
+			'Error',
+			'El registro no pudo llevarse a cabo. \n '+errormsg+'',
+			'error'
+		);
+		$('#errormsg').val("");
+	}
  </script>
