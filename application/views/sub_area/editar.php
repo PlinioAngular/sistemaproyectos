@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de SubArea</label><input autocomplete="off" value="<?php echo $sub_area->sub_area; ?>" class="form-control" placeholder="sub_area" type="text" name="sub_area" id="sub_area">
+								<label for="">Nombre de SubArea</label><input autocomplete="off" value="<?php echo $sub_area->sub_area; ?>" class="form-control form-control-sm" placeholder="sub_area" type="text" name="sub_area" id="sub_area">
 							</div>
 						</div>					
 					</div>													

@@ -60,13 +60,13 @@
 						<div class="col-sm-6">
 							<div class="form-group"><input type="hidden" value="<?php echo $datos->id_persona; ?>" name="id_responsable">
 								<label for="">Responsable</label>
-								<input type="text" readonly="" class="form-control" value="<?php echo $datos->apellido_paterno.' '.$datos->apellido_materno.' '.$datos->nombres; ?>">
+								<input type="text" readonly="" class="form-control form-control-sm" value="<?php echo $datos->apellido_paterno.' '.$datos->apellido_materno.' '.$datos->nombres; ?>">
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="">Detalle</label>
-								<input type="text" readonly="" class="form-control" value="<?php echo $datos->detalle; ?>">
+								<input type="text" readonly="" class="form-control form-control-sm" value="<?php echo $datos->detalle; ?>">
 							</div>
 						</div>
 						
@@ -76,7 +76,7 @@
 							<div class="form-group">
 								<label for="">Persona que Autoriza</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fas fa-info-circle"></i></a>
-								<select class="form-control select2" name="id_autoriza" id="id_autoriza">
+								<select class="form-control form-control-sm select2" name="id_autoriza" id="id_autoriza">
 									<option value="<?php echo $datos->id_auto; ?>"><?php echo $datos->ap_aut.' '.$datos->am_aut.' '.$datos->nom_aut; ?></option>
 									<?php foreach ($personas as $persona) { ?>							
 									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
@@ -87,7 +87,7 @@
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="">Proyecto</label><input type="hidden" value="<?php echo $datos->id_proyecto; ?>" name="id_proyecto">
-								<input type="text" readonly="" class="form-control" value="<?php echo $datos->nombre_proyecto; ?>">
+								<input type="text" readonly="" class="form-control form-control-sm" value="<?php echo $datos->nombre_proyecto; ?>">
 							</div>
 						</div>															
 					</div>	
@@ -95,25 +95,25 @@
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="">Egreso</label>
-								<input type="hidden" name="id_detalle_caja" id="id_detalle_caja" value="<?php echo $datos->id_detalle_caja; ?>"><input type="text" readonly="" class="form-control" id="egreso" name="egreso" value="<?php echo $datos->monto; ?>">
+								<input type="hidden" name="id_detalle_caja" id="id_detalle_caja" value="<?php echo $datos->id_detalle_caja; ?>"><input type="text" readonly="" class="form-control form-control-sm" id="egreso" name="egreso" value="<?php echo $datos->monto; ?>">
 							</div>
 						</div>	
 						<div class="col-sm-2">
 							<div class="form-group">
 								<label for="">Gasto Total</label><input type="hidden" value="<?php echo $datos->moneda; ?>" name="moneda">
-								<input type="text" readonly="" class="form-control" name="total" id="total" value="" placeholder="Total">
+								<input type="text" readonly="" class="form-control form-control-sm" name="total" id="total" value="" placeholder="Total">
 							</div>
 						</div>	
 						<div class="col-sm-2">
 							<div class="form-group">
 								<label for="">Saldo</label>
-								<input type="text" readonly="" class="form-control" name="saldo" id="saldo" value="" placeholder="Saldo">
+								<input type="text" readonly="" class="form-control form-control-sm" name="saldo" id="saldo" value="" placeholder="Saldo">
 							</div>
 						</div>	
 						<div class="col-sm-2">
 							<div class="form-group">
 								<label for="">Tto.</label>
-								<select class="form-control select2" name="tratamiento">
+								<select class="form-control form-control-sm select2" name="tratamiento">
 										<option value="1">SALDO DIRECTO</option>
 										<option value="3">REPOSICION</option>
 										<option value="5">VUELTO</option>
@@ -148,7 +148,7 @@
 						<div class="col-sm-2">
 							<div class="form-group">
 								
-								<input class="form-control" id="hoja" name="hoja" type="text" placeholder="Hoja a importar">
+								<input class="form-control form-control-sm" id="hoja" name="hoja" type="text" placeholder="Hoja a importar">
 							</div>
 						</div>						
     					

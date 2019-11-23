@@ -33,7 +33,7 @@ class Auth extends CI_Controller {
 		else{
 			$data  = array(
 				'id' => $res->id_persona, 
-				'nombre' => $res->nombres,
+				'nombre' => $res->nombres.' '.$res->apellido_paterno,
 				'rol' => $res->rol,
 				'login' => TRUE
 			);

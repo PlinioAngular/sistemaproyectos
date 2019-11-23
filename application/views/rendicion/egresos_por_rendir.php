@@ -40,9 +40,6 @@
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>
 <script>
 $(document).ready(function () {
  var fecha_inicio=$('#fecha_inicio').val();

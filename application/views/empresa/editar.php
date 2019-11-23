@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre Empresa</label><input autocomplete="off" value="<?php echo $empresa->empresa; ?>" class="form-control" placeholder="empresa" type="text" name="empresa" id="empresa">
+								<label for="">Nombre Empresa</label><input autocomplete="off" value="<?php echo $empresa->empresa; ?>" class="form-control form-control-sm" placeholder="empresa" type="text" name="empresa" id="empresa">
 							</div>
 						</div>					
 					</div>													

@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre Empresa</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="empresa" id="empresa">
+								<label for="">Nombre Empresa</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Nombre:" type="text" name="empresa" id="empresa">
 							</div>
 						</div>					
 					</div>													

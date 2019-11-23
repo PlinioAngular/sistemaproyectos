@@ -10,13 +10,13 @@
             </div><hr>
             <div class="row">
               <div class="col col-sm-2">
-                <input value="<?php echo date('Y-m-d',strtotime(date('Y/m/d'))); ?>" type="date" name="fecha_inicio" id="fecha_inicio" class="form-control">
+                <input value="<?php echo date('Y-m-d',strtotime(date('Y/m/d'))); ?>" type="date" name="fecha_inicio" id="fecha_inicio" class="form-control form-control-sm">
               </div>
               <div class="col col-sm-1">
-                <input value="1" type="checkbox" name="dos_fecha" id="dos_fecha" class="form-control">
+                <input value="1" type="checkbox" name="dos_fecha" id="dos_fecha" class="form-control form-control-sm">
               </div>
               <div class="col col-sm-2">
-                <input style="visibility:hidden" value="<?php echo date('Y-m-d',strtotime(date('Y/m/d'))); ?>" type="date" name="fecha_fin" id="fecha_fin" class="form-control">
+                <input style="visibility:hidden" value="<?php echo date('Y-m-d',strtotime(date('Y/m/d'))); ?>" type="date" name="fecha_fin" id="fecha_fin" class="form-control form-control-sm">
               </div>
               <div class="col col-sm-5">
                 
@@ -64,9 +64,6 @@
               </div>
         </div>
     </div>
-</div>
-</div>
-</div>
 </div>
 <script>
 $(document).ready(function () {

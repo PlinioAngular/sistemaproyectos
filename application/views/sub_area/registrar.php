@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de SubArea</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="sub_area" id="sub_area">
+								<label for="">Nombre de SubArea</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Nombre:" type="text" name="sub_area" id="sub_area">
 							</div>
 						</div>					
 					</div>													

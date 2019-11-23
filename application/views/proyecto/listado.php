@@ -52,9 +52,6 @@
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>
 <script>
 $(document).ready(function () {
  $('#dataTable').DataTable({

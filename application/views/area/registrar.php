@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre Área</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="area" id="area">
+								<label for="">Nombre Área</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Nombre:" type="text" name="area" id="area">
 							</div>
 						</div>					
 					</div>													
@@ -26,7 +26,6 @@
 			</div>
 		</div>
 	</div>
-</div> 
 </div>
 <script type="text/javascript">
 $(document).ready(function() {

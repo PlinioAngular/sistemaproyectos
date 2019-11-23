@@ -17,7 +17,7 @@
 						  </div>
               <div class="col-sm-2">
 							  <div class="form-group">
-								  <select class="form-control select2" name="tratamiento">
+								  <select class="form-control form-control-sm select2" name="tratamiento">
 										<option value="1">SALDO DIRECTO</option>
 										<option value="3">REPOSICION</option>
 										<option value="5">VUELTO</option>
@@ -30,7 +30,7 @@
 			 
 			 <div class="col-sm-2">
 				<div class="form-group">
-					<input type="text" readonly="" class="form-control" name="saldo" id="saldo" value="" placeholder="Saldo">
+					<input type="text" readonly="" class="form-control form-control-sm" name="saldo" id="saldo" value="" placeholder="Saldo">
 				</div>
 			 </div>	
               <div class="col col-sm-10"></div>
@@ -85,9 +85,6 @@
         </div>
         </form>
     </div>
-</div>
-</div>
-</div>
 </div>
 <script>
 $(document).ready(function () {	

@@ -56,7 +56,7 @@
          <label for = "automplete-1">Tags: </label>
          <input id = "automplete-1" onkeyup = "if(event.keyCode == 13) cambio()">
       </div>
-      <select class="form-control select2" name="id_proyecto" id="id_proyecto">
+      <select class="form-control form-control-sm select2" name="id_proyecto" id="id_proyecto">
 									<option value="0">--Seleccione proyecto-</option>
 									<?php foreach ($proyectos as $proyecto) { ?>							
 									<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo $proyecto->nombre_proyecto;?></option>

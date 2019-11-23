@@ -22,6 +22,15 @@ class Proyecto_model extends CI_Model {
  	return $query->result();
  }
 
+ public function mostrar_cc()
+ {
+    $this->db->select('*');
+    $this->db->from("tbl_proyecto as p");
+    $this->db->where("p.id_centro_costo >=",1);
+    $query=$this->db->get();      
+ 	return $query->result();
+ }
+
  public function mostrar_por_id($id)
  {
    $this->db->select('p.id_proyecto,p.codigo_proyecto,p.nombre_proyecto,p.descripcion,c.cliente,g.gerencia,a.area,s.sub_area,t.empresa,

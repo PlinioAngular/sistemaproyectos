@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Usuarios_model extends CI_Model {
 
 	public function login($username, $password){
-		$this->db->select("p.nombres,r.rol,p.id_persona");
+		$this->db->select("p.nombres,p.apellido_paterno,p.apellido_materno,r.rol,p.id_persona");
 		$this->db->from("tbl_persona as p");
 		$this->db->where("p.dni", $username);
 		$this->db->where("p.password", sha1($password));

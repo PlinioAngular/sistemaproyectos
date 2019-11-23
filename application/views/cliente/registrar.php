@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de cliente</label><input autocomplete="off" class="form-control" placeholder="Nombre:" type="text" name="cliente" id="cliente">
+								<label for="">Nombre de cliente</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Nombre:" type="text" name="cliente" id="cliente">
 							</div>
 						</div>					
 					</div>													
@@ -27,7 +27,6 @@
 		</div>
 	</div>
 </div> 
-</div>
 <script type="text/javascript">
 $(document).ready(function() {
 		$("form[name='add_cliente']").submit(function(e) {

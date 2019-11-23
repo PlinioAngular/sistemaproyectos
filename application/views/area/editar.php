@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Nombre de área</label><input autocomplete="off" value="<?php echo $area->area; ?>" class="form-control" placeholder="area" type="text" name="area" id="area">
+								<label for="">Nombre de área</label><input autocomplete="off" value="<?php echo $area->area; ?>" class="form-control form-control-sm" placeholder="area" type="text" name="area" id="area">
 							</div>
 						</div>					
 					</div>													
@@ -27,7 +27,6 @@
 		</div>
 	</div>
 </div> 
-</div>
 <script type="text/javascript">
 $(document).ready(function() {
 		$("form[name='edit_area']").submit(function(e) {

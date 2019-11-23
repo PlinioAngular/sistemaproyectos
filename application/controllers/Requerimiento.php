@@ -25,7 +25,7 @@ class Requerimiento extends CI_Controller {
 			redirect(base_url());
 		}
 		$this->load->model(array('requerimiento/requerimiento_model','proyecto/proyecto_model','mantenimiento/persona_model'));
- 		$this->load->library(array('session','form_validation'));
+ 		$this->load->library(array('session','form_validation','firebase'));
  		$this->load->helper(array('url','form'));
  		$this->load->database('default');
 	}
@@ -145,6 +145,33 @@ class Requerimiento extends CI_Controller {
 		}
 	}
 
+	function notificacion(){
+       
+
+        $parametro=array(
+            'title'=>"Nuevo Requerimiento",
+            'message'=>$this->session->userdata('nombre'). 'ha realizado nuevos requerimientos',
+            'image'=>null
+        );
+        $data=array(
+            'data'=>$parametro
+        );
+       
+ 
+		//getting the token from database object 
+        $devicetoken = $this->requerimiento_model->gettoken();
+        
+        $id=array(
+           $devicetoken 
+        );
+ 
+		//creating firebase class object 
+		
+ 
+		//sending push notification and displaying result 
+		$this->firebase->send($id, $data);
+    }   
+
 	function requerimiento_add(){
 
 		//$this->form_validation->set_rules('total','total', 'required');
@@ -162,6 +189,7 @@ class Requerimiento extends CI_Controller {
 		{
 			if($qid = $this->requerimiento_model->requerimiento_add())
 			{
+				$this->notificacion();
 				echo 'si_'.$qid;
 			}
 			else

@@ -50,9 +50,6 @@
           </form>
     </div>
 </div>
-</div>
-</div>
-</div>
 <script>
 $(document).ready(function () {
   var id='<?php echo $id; ?>';

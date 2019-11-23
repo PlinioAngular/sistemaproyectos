@@ -22,19 +22,19 @@
 							<div class="col-sm-12" id="mdivuno">
 								<div class="form-group">
 									<label for="" id="firsttext">Nombre</label>
-									<input autocomplete="off" class="form-control" placeholder="Ingrese Información" type="text" id="mvaluno" name="mvaluno" required="">
+									<input autocomplete="off" class="form-control form-control-sm" placeholder="Ingrese Información" type="text" id="mvaluno" name="mvaluno" required="">
 								</div>
 							</div>
 							<div class="col-sm-12" id="mdivdos">
 								<div class="form-group">
 									<label for="" id="secondtext">Código</label>
-									<input autocomplete="off" class="form-control" placeholder="Ingrese Código" type="text" id="mvaldos" name="mvaldos" required="">
+									<input autocomplete="off" class="form-control form-control-sm" placeholder="Ingrese Código" type="text" id="mvaldos" name="mvaldos" required="">
 								</div>
 							</div>	
 							<div class="col-sm-12" id="mdivtres">
 								<div class="form-group">
 									<label for="" id="threetext">Descripción</label>
-									<input autocomplete="off" class="form-control" placeholder="Ingrese Descripción" type="text" id="mvaltres" name="mvaltres">
+									<input autocomplete="off" class="form-control form-control-sm" placeholder="Ingrese Descripción" type="text" id="mvaltres" name="mvaltres">
 								</div>
 							</div>
 							<div class="col-sm-12">
@@ -100,6 +100,12 @@
 
   <!-- Core plugin JavaScript-->
   <script src="<?php echo base_url()?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="<?php echo base_url()?>assets/js/input-mask/jquery.inputmask.js"></script>
+  <script src="<?php echo base_url()?>assets/js/input-mask/jquery.inputmask.regex.extensions.js"></script>
+  <script src="<?php echo base_url()?>assets/js/input-mask/jquery.inputmask.extensions.js"></script>
+  
+  <link href="<?php echo base_url()?>assets/js/selected/css/select2.min.css" rel="stylesheet" />
+  <script src="<?php echo base_url()?>assets/js/selected/js/select2.min.js"></script> 
 
   <!-- Custom scripts for all pages-->
   <script src="<?php echo base_url()?>assets/js/sb-admin-2.min.js"></script>

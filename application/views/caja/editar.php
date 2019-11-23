@@ -16,10 +16,10 @@
 							<div class="form-group">
 								<label for="">¿INGRESO?</label>
 								<?php if($caja->egreso==0){ ?>
-								<input class="form-control" type="checkbox" checked="checked" name="ingreso" value="1" >
+								<input class="form-control form-control-sm" type="checkbox" checked="checked" name="ingreso" value="1" >
 								<input type="hidden" name="movimiento_anterior" value="ingreso">
 								<?php } else { ?>
-									<input class="form-control" type="checkbox"  name="ingreso" value="1" >
+									<input class="form-control form-control-sm" type="checkbox"  name="ingreso" value="1" >
 									<input type="hidden" name="movimiento_anterior" value="egreso">
 									<?php }  ?>
 							</div>
@@ -28,7 +28,7 @@
 						<div class="form-group">
 								<label for="">Moneda</label>
 								<input type="hidden" name="moneda_anterior" value="<?php echo $caja->moneda; ?>">
-								<select class="form-control select2" name="moneda" id="moneda">
+								<select class="form-control form-control-sm select2" name="moneda" id="moneda">
 									<option value="<?php echo $caja->moneda; ?>"><?php echo $caja->moneda; ?></option>
 									<option value="SOLES">SOLES</option>
 									<option value="DOLARES">DÓLARES</option>
@@ -38,7 +38,7 @@
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="">Tipo de movimiento</label>
-								<select class="form-control select2" name="tipo" id="tipo">
+								<select class="form-control form-control-sm select2" name="tipo" id="tipo">
                                     <option value="<?php echo $caja->tipo; ?>"><?php echo $caja->tipo; ?></option>
 									<option value="INTERNO">INTERNO</option>
 									<option value="EXTERNO">EXTERNO</option>
@@ -47,8 +47,8 @@
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
-								<label for="">Total</label><input type="hidden" autocomplete="off" class="form-control" placeholder="Total" value="<?php if($caja->ingreso==0){ echo $caja->egreso; } else { echo $caja->ingreso; } ?>" name="total" id="total">
-								<input autocomplete="off" readonly="" class="form-control" value="<?php if($caja->ingreso==0){ echo $caja->egreso; } else { echo $caja->ingreso; } ?>" placeholder="Total" type="text" name="total2" id="total2">
+								<label for="">Total</label><input type="hidden" autocomplete="off" class="form-control form-control-sm" placeholder="Total" value="<?php if($caja->ingreso==0){ echo $caja->egreso; } else { echo $caja->ingreso; } ?>" name="total" id="total">
+								<input autocomplete="off" readonly="" class="form-control form-control-sm" value="<?php if($caja->ingreso==0){ echo $caja->egreso; } else { echo $caja->ingreso; } ?>" placeholder="Total" type="text" name="total2" id="total2">
 								<input type="hidden" value="<?php if($caja->ingreso==0){ echo $caja->egreso; } else { echo $caja->ingreso; } ?>"  name="total_anterior">
 							</div>
 						</div>
@@ -58,7 +58,7 @@
 							<div class="form-group">
 								<label for="">Empresa Asociada</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fas fa-info-circle"></i></a>
-								<select class="form-control select2" name="id_empresa" id="id_empresa">
+								<select class="form-control form-control-sm select2" name="id_empresa" id="id_empresa">
 									<option value="<?php echo $caja->id_empresa;?>"><?php echo $caja->empresa;?></option>
 									<?php foreach ($empresas as $empresa) { ?>							
 									<option value="<?php echo $empresa->id_empresa;?>"><?php echo $empresa->empresa;?></option>
@@ -71,7 +71,7 @@
 								<label for="">Banco</label>
 								<input type="hidden" name="banco_anterior" value="<?php echo $caja->id_banco; ?>">
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fas fa-info-circle"></i></a>
-								<select class="form-control select2" name="id_banco" id="id_banco">	
+								<select class="form-control form-control-sm select2" name="id_banco" id="id_banco">	
                                 <option value="<?php echo $caja->id_banco;?>"><?php echo $caja->banco;?></option>								
 								</select>
 							</div>						
@@ -82,7 +82,7 @@
 							<div class="form-group">
 								<label for="">Persona Responsable</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fas fa-info-circle"></i></a>
-								<select class="form-control select2" name="id_responsable" id="id_responsable">
+								<select class="form-control form-control-sm select2" name="id_responsable" id="id_responsable">
 									<option value="<?php echo $caja->id_res;?>"><?php echo $caja->ap_res.' '.$caja->am_res.' '.$caja->nom_res;?></option>
 									<?php foreach ($personas as $persona) { ?>							
 									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
@@ -94,7 +94,7 @@
 							<div class="form-group">
 								<label for="">Beneficiario</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fas fa-info-circle"></i></a>
-								<select class="form-control select2" name="id_beneficiario" id="id_beneficiario">
+								<select class="form-control form-control-sm select2" name="id_beneficiario" id="id_beneficiario">
                                 <option value="<?php echo $caja->id_ben;?>"><?php echo $caja->ap_ben.' '.$caja->am_ben.' '.$caja->nom_ben;?></option>
 									<?php foreach ($personas as $persona) { ?>							
 									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
@@ -108,7 +108,7 @@
 							<div class="form-group">
 								<label for="">Persona que Autoriza</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fas fa-info-circle"></i></a>
-								<select class="form-control select2" name="id_autoriza" id="id_autoriza">
+								<select class="form-control form-control-sm select2" name="id_autoriza" id="id_autoriza">
 									<option value="<?php echo $caja->id_aut;?>"><?php echo $caja->ap_aut.' '.$caja->am_aut.' '.$caja->nom_aut;?></option>
 									<?php foreach ($personas as $persona) { ?>							
 									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
@@ -120,7 +120,7 @@
 							<div class="form-group">
 								<label for="">Proyecto</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fas fa-info-circle"></i></a>
-								<select class="form-control select2" name="id_proyecto" id="id_proyecto">
+								<select class="form-control form-control-sm select2" name="id_proyecto" id="id_proyecto">
 									<option value="0">--Seleccione proyecto-</option>
 									<?php foreach ($proyectos as $proyecto) { ?>							
 									<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo $proyecto->nombre_proyecto;?></option>

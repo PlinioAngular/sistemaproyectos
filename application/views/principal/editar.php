@@ -13,12 +13,12 @@
 					<div class="row">
 					<div class="col-sm-8">
 						<div class="form-group">
-								<label for="">Nombre de Proyecto</label><input autocomplete="off" value="<?php echo $proyecto->nombre_proyecto; ?>" class="form-control" placeholder="Nombre del proyecto" type="text" name="nombre_proyecto" id="nombre_proyecto">
+								<label for="">Nombre de Proyecto</label><input autocomplete="off" value="<?php echo $proyecto->nombre_proyecto; ?>" class="form-control form-control-sm" placeholder="Nombre del proyecto" type="text" name="nombre_proyecto" id="nombre_proyecto">
 							</div>
 						</div>
 						<div class="col-sm-4">
 						<div class="form-group">
-								<label for="">Código</label><input autocomplete="off" value="<?php echo $proyecto->codigo_proyecto; ?>" class="form-control" placeholder="Código" type="text" name="codigo_proyecto" id="codigo_proyecto">
+								<label for="">Código</label><input autocomplete="off" value="<?php echo $proyecto->codigo_proyecto; ?>" class="form-control form-control-sm" placeholder="Código" type="text" name="codigo_proyecto" id="codigo_proyecto">
 							</div>
 						</div>						
 					</div>
@@ -26,7 +26,7 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label>Descripción del Proyecto</label><textarea class="form-control" rows="3" placeholder="Describe algunas características del proyecto..." name="descripcion" id="descripcion"><?php echo $proyecto->descripcion; ?></textarea>
+								<label>Descripción del Proyecto</label><textarea class="form-control form-control-sm" rows="3" placeholder="Describe algunas características del proyecto..." name="descripcion" id="descripcion"><?php echo $proyecto->descripcion; ?></textarea>
 							</div>
 						</div>
 					</div>		
@@ -35,7 +35,7 @@
 							<div class="form-group">
 								<label for="">Cliente</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="typcn typcn-plus"></i></a>
-								<select class="form-control select2" name="id_cliente" id="id_cliente">
+								<select class="form-control form-control-sm select2" name="id_cliente" id="id_cliente">
 									<option value="<?php echo $proyecto->id_cliente;?>"><?php echo $proyecto->cliente;?></option>
 									<?php foreach ($clientes as $cliente) { ?>							
 									<option value="<?php echo $cliente->id_cliente;?>"><?php echo $cliente->cliente;?></option>
@@ -47,7 +47,7 @@
 							<div class="form-group">
               				<label for="">Gerencia</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="typcn typcn-plus"></i></a>
-								<select class="form-control select2" name="id_gerencia" id="id_gerencia">
+								<select class="form-control form-control-sm select2" name="id_gerencia" id="id_gerencia">
 									<option value="<?php echo $proyecto->id_gerencia;?>"><?php echo $proyecto->gerencia;?></option>
 									<?php foreach ($gerencias as $gerencia) { ?>							
 									<option value="<?php echo $gerencia->id_gerencia;?>"><?php echo $gerencia->gerencia;?></option>
@@ -62,7 +62,7 @@
 							<div class="form-group">
 								<label for="">Área</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="typcn typcn-plus"></i></a>
-								<select class="form-control select2" name="id_area" id="id_area">
+								<select class="form-control form-control-sm select2" name="id_area" id="id_area">
 									<option value="<?php echo $proyecto->id_area;?>"><?php echo $proyecto->area;?></option>
 									<?php foreach ($areas as $area) { ?>							
 									<option value="<?php echo $area->id_area;?>"><?php echo $area->area;?></option>
@@ -74,7 +74,7 @@
 							<div class="form-group">
               				<label for="">Sub Área</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="typcn typcn-plus"></i></a>
-								<select class="form-control select2" name="id_sub_area" id="id_sub_area">
+								<select class="form-control form-control-sm select2" name="id_sub_area" id="id_sub_area">
 									<option value="<?php echo $proyecto->id_sub_area;?>"><?php echo $proyecto->sub_area;?></option>
 									<?php foreach ($sub_areas as $sub_area) { ?>							
 									<option value="<?php echo $sub_area->id_sub_area;?>"><?php echo $sub_area->sub_area;?></option>
@@ -88,7 +88,7 @@
 							<div class="form-group">
 								<label for="">Empresa</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="typcn typcn-plus"></i></a>
-								<select class="form-control select2" name="id_empresa" id="id_empresa">
+								<select class="form-control form-control-sm select2" name="id_empresa" id="id_empresa">
 									<option value="<?php echo $proyecto->id_empresa;?>"><?php echo $proyecto->empresa;?></option>
 									<?php foreach ($empresas as $empresa) { ?>							
 									<option value="<?php echo $empresa->id_empresa;?>"><?php echo $empresa->empresa;?></option>

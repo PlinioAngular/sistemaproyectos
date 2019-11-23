@@ -91,7 +91,7 @@
 						<div class="col-sm-3">
 						<div class="form-group">
 								<label for="">Moneda</label>
-								<select class="form-control select2" name="moneda" id="moneda">
+								<select class="form-control form-control-sm select2" name="moneda" id="moneda">
 									<option value="0">--Selecciones moneda--</option>
 									<option value="SOLES">SOLES</option>
 									<option value="DOLARES">DÓLARES</option>
@@ -101,7 +101,7 @@
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="">Tipo de movimiento</label>
-								<select class="form-control select2" name="tipo" id="tipo">
+								<select class="form-control form-control-sm select2" name="tipo" id="tipo">
 									<option value="0">--Selecciones tipo de movimiento--</option>
 									<option value="INTERNO">INTERNO</option>
 									<option value="EXTERNO">EXTERNO</option>
@@ -115,7 +115,7 @@
 							<div class="form-group">
 								<label for="">Empresa Asociada</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<select class="form-control select2" name="id_empresa" id="id_empresa">
+								<select class="form-control form-control-sm select2" name="id_empresa" id="id_empresa">
 									<option value="0">--Selecciones una empresa--</option>
 									<?php foreach ($empresas as $empresa) { ?>							
 									<option value="<?php echo $empresa->id_empresa;?>"><?php echo $empresa->empresa;?></option>
@@ -127,10 +127,10 @@
 							<div class="form-group">
 								<label for="">Proyecto</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<input id = "proyecto_id"class="form-control"> 
+								<input id = "proyecto_id"class="form-control form-control-sm"> 
 								<input type="hidden"name="id_proyecto" id="id_proyecto">
 								<!--
-								<<select class="form-control select2" name="id_proyecto" id="id_proyecto">
+								<<select class="form-control form-control-sm select2" name="id_proyecto" id="id_proyecto">
 									<option value="0">--Seleccione proyecto-</option>
 									<?php foreach ($proyectos as $proyecto) { ?>							
 									<option value="<?php echo $proyecto->id_proyecto;?>"><?php echo $proyecto->nombre_proyecto;?></option>
@@ -144,8 +144,8 @@
 							<div class="form-group">
 								<label for="">Persona Responsable</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<input id = "responsable_id"class="form-control"><input type="hidden"name="id_responsable" id="id_responsable">
-								<!--<select class="form-control select2" name="id_responsable" id="id_responsable">
+								<input id = "responsable_id"class="form-control form-control-sm"><input type="hidden"name="id_responsable" id="id_responsable">
+								<!--<select class="form-control form-control-sm select2" name="id_responsable" id="id_responsable">
 									<option value="0">--Seleccione a responsable--</option>
 									<?php foreach ($personas as $persona) { ?>							
 									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
@@ -157,8 +157,8 @@
 							<div class="form-group">
 								<label for="">Persona que Autoriza</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="fa fa-plus-square"></i></a>
-								<input id = "autoriza_id"class="form-control"><input type="hidden"name="id_autoriza" id="id_autoriza">
-								<!--<select class="form-control select2" name="id_responsable" id="id_responsable">
+								<input id = "autoriza_id"class="form-control form-control-sm"><input type="hidden"name="id_autoriza" id="id_autoriza">
+								<!--<select class="form-control form-control-sm select2" name="id_responsable" id="id_responsable">
 									<option value="0">--Seleccione a responsable--</option>
 									<?php foreach ($personas as $persona) { ?>							
 									<option value="<?php echo $persona->id_persona;?>"><?php echo $persona->apellido_paterno.' '.$persona->apellido_materno.' '.$persona->nombres;?></option>
@@ -178,7 +178,7 @@
 						<div class="col-sm-7"></div>
 						<div class="col-sm-3">
 							<div class="form-group">
-								<label for="">Total</label><input type="text" readonly="" class="form-control" name="total" id="total" value="" placeholder="Total">
+								<label for="">Total</label><input type="text" readonly="" class="form-control form-control-sm" name="total" id="total" value="" placeholder="Total">
 							</div>
 						</div>
 															

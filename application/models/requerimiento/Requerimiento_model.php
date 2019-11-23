@@ -190,6 +190,8 @@ function requerimiento_edit(){
    
 }
 
+
+
 function detalle_requerimiento_edit($id_detalle,$fecha_inicio,$fecha_fin,$dni,$datos,$dias,$precio,$descripcion){
       $update_id;
       for($i=0;$i<count($id_detalle);$i++){
@@ -244,4 +246,13 @@ function detalle_requerimiento_edit($id_detalle,$fecha_inicio,$fecha_fin,$dni,$d
    $update_id = $id;
    return $update_id;
    }
+
+   public function gettoken()
+    {
+        $this->db->select('*');
+        $this->db->from("devices");
+        $this->db->where("email","daniel.fernandez@sattelital.com.pe");
+        return $this->db->get()->row()->token;
+
+    }
 }

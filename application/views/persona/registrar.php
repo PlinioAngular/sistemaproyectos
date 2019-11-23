@@ -12,29 +12,29 @@
 					<div class="row">
 						<div class="col-sm-6">
 						<div class="form-group">
-								<label for="">Apellido Paterno</label><input autocomplete="off" class="form-control" placeholder="Apellido Paterno" type="text" name="apellido_paterno" id="apellido_paterno">
+								<label for="">Apellido Paterno</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Apellido Paterno" type="text" name="apellido_paterno" id="apellido_paterno">
 							</div>
 						</div>
 						<div class="col-sm-6">
 						<div class="form-group">
-								<label for="">Apellido Materno</label><input autocomplete="off" class="form-control" placeholder="Apellido Materno" type="text" name="apellido_materno" id="apellido_materno">
+								<label for="">Apellido Materno</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Apellido Materno" type="text" name="apellido_materno" id="apellido_materno">
 							</div>
 						</div>						
 					</div>	
 					<div class="row">
 						<div class="col-sm-6">
 						<div class="form-group">
-								<label for="">Nombres</label><input autocomplete="off" class="form-control" placeholder="Apellido Paterno" type="text" name="nombres" id="nombres">
+								<label for="">Nombres</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Apellido Paterno" type="text" name="nombres" id="nombres">
 							</div>
 						</div>
 						<div class="col-sm-3">
 						<div class="form-group">
-								<label for="">DNI</label><input autocomplete="off" class="form-control" placeholder="DNI" type="text" name="dni" id="dni">
+								<label for="">DNI</label><input autocomplete="off" class="form-control form-control-sm" placeholder="DNI" type="text" name="dni" id="dni">
 							</div>
 						</div>	
 						<div class="col-sm-3">
 						<div class="form-group">
-								<label for="">Fecha de Nacimiento</label><input autocomplete="off" class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento">
+								<label for="">Fecha de Nacimiento</label><input autocomplete="off" class="form-control form-control-sm" type="date" name="fecha_nacimiento" id="fecha_nacimiento">
 							</div>
 						</div>						
 					</div>													

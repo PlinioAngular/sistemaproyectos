@@ -12,14 +12,14 @@
 					<div class="row">
 						<div class="col-sm-6">
 						<div class="form-group">
-								<label for="">Nombre Banco</label><input autocomplete="off" class="form-control" placeholder="Nombre banco" type="text" name="banco" id="banco">
+								<label for="">Nombre Banco</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Nombre banco" type="text" name="banco" id="banco">
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="">Empresa Asociada</label>
 								<a href="#" id="midtipopro" data-toggle="modal" data-target="#modal_general" onclick="modaledit(this.id);"><i class="typcn typcn-plus"></i></a>
-								<select class="form-control select2" name="id_empresa" id="id_empresa">
+								<select class="form-control form-control-sm select2" name="id_empresa" id="id_empresa">
 									<?php foreach ($empresas as $empresa) { ?>							
 									<option value="<?php echo $empresa->id_empresa;?>"><?php echo $empresa->empresa;?></option>
 									<?php } ?>
@@ -30,29 +30,29 @@
 					<div class="row">
 						<div class="col-sm-6">
 						<div class="form-group">
-								<label for="">Cuenta soles</label><input autocomplete="off" class="form-control" placeholder="Num. Cuenta en soles" type="text" name="cuenta_soles" id="cuenta_soles">
+								<label for="">Cuenta soles</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Num. Cuenta en soles" type="text" name="cuenta_soles" id="cuenta_soles">
 							</div>
 						</div>
 						<div class="col-sm-6">
 						<div class="form-group">
-								<label for="">Cuenta Dólares</label><input autocomplete="off" class="form-control" placeholder="Num. Cuenta en dólares" type="text" name="cuenta_dolares" id="cuenta_dolares">
+								<label for="">Cuenta Dólares</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Num. Cuenta en dólares" type="text" name="cuenta_dolares" id="cuenta_dolares">
 							</div>
 						</div>											
 					</div>		
 					<div class="row">
 						<div class="col-sm-5">
 						<div class="form-group">
-								<label for="">Monto soles</label><input autocomplete="off" class="form-control" placeholder="Total Soles" type="text" name="monto_soles" id="monto_soles">
+								<label for="">Monto soles</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Total Soles" type="text" name="monto_soles" id="monto_soles">
 							</div>
 						</div>
 						<div class="col-sm-5">
 						<div class="form-group">
-								<label for="">Monto Dólares</label><input autocomplete="off" class="form-control" placeholder="Total dólares" type="text" name="monto_dolares" id="monto_dolares">
+								<label for="">Monto Dólares</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Total dólares" type="text" name="monto_dolares" id="monto_dolares">
 							</div>
 						</div>	
 						<div class="col-sm-2">
 						<div class="form-group">
-								<label for="">Tipo de cambio</label><input autocomplete="off" class="form-control" placeholder="Tipo de cambio" type="text" name="cambio" id="cambio">
+								<label for="">Tipo de cambio</label><input autocomplete="off" class="form-control form-control-sm" placeholder="Tipo de cambio" type="text" name="cambio" id="cambio">
 							</div>
 						</div>										
 					</div>													
